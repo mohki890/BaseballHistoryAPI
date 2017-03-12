@@ -35,7 +35,7 @@ namespace BaseballHistoryAPI
             builder.EntitySet<School>("Schools");
             builder.EntitySet<SeriesPost>("SeriesPost");
             builder.EntitySet<Team>("Teams");
-            builder.EntitySet<TeamsFranchise>("TeamsFranchises");
+            builder.EntitySet<TeamFranchise>("TeamFranchises");
             builder.EntitySet<TeamsHalf>("TeamsHalf");
             builder.EntitySet<PlayerBattingTotal>("PlayerBattingTotals");
             builder.EntitySet<PlayerFieldingTotal>("PlayerFieldingTotals");

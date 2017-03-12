@@ -25,7 +25,7 @@ namespace BaseballHistoryAPI.Models
             PitchingPost = new HashSet<PitchingPost>();
             Salaries = new HashSet<Salary>();
             SeriesPost = new HashSet<SeriesPost>();
-            SeriesPost1 = new HashSet<SeriesPost>();
+            //SeriesPost1 = new HashSet<SeriesPost>();
             TeamsHalf = new HashSet<TeamsHalf>();
         }
 
@@ -189,10 +189,10 @@ namespace BaseballHistoryAPI.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SeriesPost> SeriesPost { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SeriesPost> SeriesPost1 { get; set; }
+        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        //public virtual ICollection<SeriesPost> SeriesPost1 { get; set; }
 
-        public virtual TeamsFranchise TeamsFranchises { get; set; }
+        public virtual TeamFranchise TeamFranchises { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TeamsHalf> TeamsHalf { get; set; }

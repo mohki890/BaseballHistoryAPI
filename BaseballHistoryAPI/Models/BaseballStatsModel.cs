@@ -37,7 +37,7 @@ namespace BaseballHistoryAPI.Models
         public virtual DbSet<School> Schools { get; set; }
         public virtual DbSet<SeriesPost> SeriesPost { get; set; }
         public virtual DbSet<Team> Teams { get; set; }
-        public virtual DbSet<TeamsFranchise> TeamsFranchises { get; set; }
+        public virtual DbSet<TeamFranchise> TeamFranchises { get; set; }
         public virtual DbSet<TeamsHalf> TeamsHalf { get; set; }
         public virtual DbSet<PlayerBattingTotal> PlayerBattingTotals { get; set; }
         public virtual DbSet<PlayerFieldingTotal> PlayerFieldingTotals { get; set; }

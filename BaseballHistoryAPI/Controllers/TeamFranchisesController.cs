@@ -9,23 +9,23 @@ using BaseballHistoryAPI.Models;
 
 namespace BaseballHistoryAPI.Controllers
 {
-    public class TeamsFranchisesController : ODataController
+    public class TeamFranchisesController : ODataController
     {
         BaseballStatsModel db = new BaseballStatsModel();
-        private bool TeamsFranchisesExists(string key)
+        private bool TeamFranchisesExists(string key)
         {
-            return db.TeamsFranchises.Any(p => p.franchID == key);
+            return db.TeamFranchises.Any(p => p.franchID == key);
         }
 
         [EnableQuery]
-        public IQueryable<TeamsFranchise> Get()
+        public IQueryable<TeamFranchise> Get()
         {
-            return db.TeamsFranchises;
+            return db.TeamFranchises;
         }
         [EnableQuery]
-        public SingleResult<TeamsFranchise> Get([FromODataUri] string key)
+        public SingleResult<TeamFranchise> Get([FromODataUri] string key)
         {
-            IQueryable<TeamsFranchise> result = db.TeamsFranchises.Where(p => p.franchID == key);
+            IQueryable<TeamFranchise> result = db.TeamFranchises.Where(p => p.franchID == key);
             return SingleResult.Create(result);
         }
 
