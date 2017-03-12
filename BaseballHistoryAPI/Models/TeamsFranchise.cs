@@ -6,12 +6,12 @@ namespace BaseballHistoryAPI.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class TeamsFranchises
+    public partial class TeamsFranchise
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TeamsFranchises()
+        public TeamsFranchise()
         {
-            Teams = new HashSet<Teams>();
+            Teams = new HashSet<Team>();
         }
 
         [Key]
@@ -28,6 +28,6 @@ namespace BaseballHistoryAPI.Models
         public string NAassoc { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Teams> Teams { get; set; }
+        public virtual ICollection<Team> Teams { get; set; }
     }
 }

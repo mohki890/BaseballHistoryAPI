@@ -6,10 +6,10 @@ namespace BaseballHistoryAPI.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class Teams
+    public partial class Team
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Teams()
+        public Team()
         {
             AllstarFull = new HashSet<AllstarFull>();
             Appearances = new HashSet<Appearance>();
@@ -23,7 +23,7 @@ namespace BaseballHistoryAPI.Models
             ManagersHalf = new HashSet<ManagersHalf>();
             Pitching = new HashSet<Pitching>();
             PitchingPost = new HashSet<PitchingPost>();
-            Salaries = new HashSet<Salaries>();
+            Salaries = new HashSet<Salary>();
             SeriesPost = new HashSet<SeriesPost>();
             SeriesPost1 = new HashSet<SeriesPost>();
             TeamsHalf = new HashSet<TeamsHalf>();
@@ -184,7 +184,7 @@ namespace BaseballHistoryAPI.Models
         public virtual ICollection<PitchingPost> PitchingPost { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Salaries> Salaries { get; set; }
+        public virtual ICollection<Salary> Salaries { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SeriesPost> SeriesPost { get; set; }
@@ -192,7 +192,7 @@ namespace BaseballHistoryAPI.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SeriesPost> SeriesPost1 { get; set; }
 
-        public virtual TeamsFranchises TeamsFranchises { get; set; }
+        public virtual TeamsFranchise TeamsFranchises { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TeamsHalf> TeamsHalf { get; set; }

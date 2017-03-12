@@ -12,9 +12,9 @@ namespace BaseballHistoryAPI.Controllers
     public class MasterController : ODataController
     {
         BaseballStatsModel db = new BaseballStatsModel();
-        private bool MasterExists(int key)
+        private bool MasterExists(string key)
         {
-            return db.Master.Any(p => p.Id == key);
+            return db.Master.Any(p => p.playerID == key);
         }
 
         [EnableQuery]
@@ -23,9 +23,9 @@ namespace BaseballHistoryAPI.Controllers
             return db.Master;
         }
         [EnableQuery]
-        public SingleResult<Master> Get([FromODataUri] int key)
+        public SingleResult<Master> Get([FromODataUri] string key)
         {
-            IQueryable<Master> result = db.Master.Where(p => p.Id == key);
+            IQueryable<Master> result = db.Master.Where(p => p.playerID == key);
             return SingleResult.Create(result);
         }
 

@@ -12,20 +12,20 @@ namespace BaseballHistoryAPI.Controllers
     public class TeamsController : ODataController
     {
         BaseballStatsModel db = new BaseballStatsModel();
-        private bool TeamsExists(int key)
+        private bool TeamsExists(string teamID, string lgID, int yearID)
         {
-            return db.Teams.Any(p => p.Id == key);
+            return db.Teams.Any(p => p.teamID == teamID && p.lgID == lgID && p.yearID == yearID);
         }
 
         [EnableQuery]
-        public IQueryable<Teams> Get()
+        public IQueryable<Team> Get()
         {
             return db.Teams;
         }
         [EnableQuery]
-        public SingleResult<Teams> Get([FromODataUri] int key)
+        public SingleResult<Team> Get([FromODataUri] string teamID, [FromODataUri] string lgID, [FromODataUri] int yearID)
         {
-            IQueryable<Teams> result = db.Teams.Where(p => p.Id == key);
+            IQueryable<Team> result = db.Teams.Where(p => p.teamID == teamID && p.lgID == lgID && p.yearID == yearID);
             return SingleResult.Create(result);
         }
 

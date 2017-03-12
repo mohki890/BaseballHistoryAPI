@@ -63,6 +63,6 @@ namespace BaseballHistoryAPI.Models
 
         public virtual Master Master { get; set; }
 
-        public virtual Teams Teams { get; set; }
+        public virtual Team Teams { get; set; }
     }
 }

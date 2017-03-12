@@ -12,9 +12,9 @@ namespace BaseballHistoryAPI.Controllers
     public class AwardsShareManagerController : ODataController
     {
         BaseballStatsModel db = new BaseballStatsModel();
-        private bool AwardsShareManagersExists(int key)
+        private bool AwardsShareManagersExists(string playerID, string lgID, int yearID, string awardID)
         {
-            return db.AwardsShareManagers.Any(p => p.Id == key);
+            return db.AwardsShareManagers.Any(p => p.playerID == playerID && p.lgID == lgID && p.yearID == yearID && p.awardID == awardID);
         }
 
         [EnableQuery]
@@ -23,9 +23,9 @@ namespace BaseballHistoryAPI.Controllers
             return db.AwardsShareManagers;
         }
         [EnableQuery]
-        public SingleResult<AwardsShareManager> Get([FromODataUri] int key)
+        public SingleResult<AwardsShareManager> Get([FromODataUri] string playerID, [FromODataUri] string lgID, [FromODataUri] int yearID, [FromODataUri] string awardID)
         {
-            IQueryable<AwardsShareManager> result = db.AwardsShareManagers.Where(p => p.Id == key);
+            IQueryable<AwardsShareManager> result = db.AwardsShareManagers.Where(p => p.playerID == playerID && p.lgID == lgID && p.yearID == yearID && p.awardID == awardID);
             return SingleResult.Create(result);
         }
 

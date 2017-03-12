@@ -6,7 +6,7 @@ namespace BaseballHistoryAPI.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class Salaries
+    public partial class Salary
     {
         [Key]
         [Column(Order = 0)]
@@ -32,6 +32,6 @@ namespace BaseballHistoryAPI.Models
 
         public virtual Master Master { get; set; }
 
-        public virtual Teams Teams { get; set; }
+        public virtual Team Teams { get; set; }
     }
 }

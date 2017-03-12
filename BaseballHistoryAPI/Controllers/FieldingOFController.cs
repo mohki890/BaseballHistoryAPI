@@ -12,9 +12,9 @@ namespace BaseballHistoryAPI.Controllers
     public class FieldingOFController : ODataController
     {
         BaseballStatsModel db = new BaseballStatsModel();
-        private bool FieldingOFExists(int key)
+        private bool FieldingOFExists(string playerID, int yearID, int stint)
         {
-            return db.FieldingOF.Any(p => p.Id == key);
+            return db.FieldingOF.Any(p => p.playerID == playerID && p.yearID == yearID && p.stint == stint);
         }
 
         [EnableQuery]
@@ -23,9 +23,9 @@ namespace BaseballHistoryAPI.Controllers
             return db.FieldingOF;
         }
         [EnableQuery]
-        public SingleResult<FieldingOF> Get([FromODataUri] int key)
+        public SingleResult<FieldingOF> Get([FromODataUri] string playerID, int yearID, int stint)
         {
-            IQueryable<FieldingOF> result = db.FieldingOF.Where(p => p.Id == key);
+            IQueryable<FieldingOF> result = db.FieldingOF.Where(p => p.playerID == playerID && p.yearID == yearID && p.stint == stint);
             return SingleResult.Create(result);
         }
 

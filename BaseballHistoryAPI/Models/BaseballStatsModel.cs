@@ -33,11 +33,11 @@ namespace BaseballHistoryAPI.Models
         public virtual DbSet<Park> Parks { get; set; }
         public virtual DbSet<Pitching> Pitching { get; set; }
         public virtual DbSet<PitchingPost> PitchingPost { get; set; }
-        public virtual DbSet<Salaries> Salaries { get; set; }
-        public virtual DbSet<Schools> Schools { get; set; }
+        public virtual DbSet<Salary> Salaries { get; set; }
+        public virtual DbSet<School> Schools { get; set; }
         public virtual DbSet<SeriesPost> SeriesPost { get; set; }
-        public virtual DbSet<Teams> Teams { get; set; }
-        public virtual DbSet<TeamsFranchises> TeamsFranchises { get; set; }
+        public virtual DbSet<Team> Teams { get; set; }
+        public virtual DbSet<TeamsFranchise> TeamsFranchises { get; set; }
         public virtual DbSet<TeamsHalf> TeamsHalf { get; set; }
         public virtual DbSet<PlayerBattingTotal> PlayerBattingTotals { get; set; }
         public virtual DbSet<PlayerFieldingTotal> PlayerFieldingTotals { get; set; }
@@ -143,107 +143,101 @@ namespace BaseballHistoryAPI.Models
                 .WithRequired(e => e.Master)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Park>()
-                .HasMany(e => e.HomeGames)
-                .WithRequired(e => e.Parks)
-                .HasForeignKey(e => new { e.parkkey })
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Schools>()
+            modelBuilder.Entity<School>()
                 .HasMany(e => e.CollegePlaying)
                 .WithRequired(e => e.Schools)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Teams>()
+            modelBuilder.Entity<Team>()
                 .HasMany(e => e.AllstarFull)
                 .WithRequired(e => e.Teams)
                 .HasForeignKey(e => new { e.teamID, e.lgID, e.yearID })
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Teams>()
+            modelBuilder.Entity<Team>()
                 .HasMany(e => e.Appearances)
                 .WithRequired(e => e.Teams)
                 .HasForeignKey(e => new { e.teamID, e.lgID, e.yearID })
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Teams>()
+            modelBuilder.Entity<Team>()
                 .HasMany(e => e.Batting)
                 .WithRequired(e => e.Teams)
                 .HasForeignKey(e => new { e.teamID, e.lgID, e.yearID })
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Teams>()
+            modelBuilder.Entity<Team>()
                 .HasMany(e => e.BattingPost)
                 .WithRequired(e => e.Teams)
                 .HasForeignKey(e => new { e.teamID, e.lgID, e.yearID })
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Teams>()
+            modelBuilder.Entity<Team>()
                 .HasMany(e => e.Fielding)
                 .WithRequired(e => e.Teams)
                 .HasForeignKey(e => new { e.teamID, e.lgID, e.yearID })
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Teams>()
+            modelBuilder.Entity<Team>()
                 .HasMany(e => e.FieldingOFsplit)
                 .WithRequired(e => e.Teams)
                 .HasForeignKey(e => new { e.teamID, e.lgID, e.yearID })
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Teams>()
+            modelBuilder.Entity<Team>()
                 .HasMany(e => e.FieldingPost)
                 .WithRequired(e => e.Teams)
                 .HasForeignKey(e => new { e.teamID, e.lgID, e.yearID })
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Teams>()
+            modelBuilder.Entity<Team>()
                 .HasMany(e => e.HomeGames)
                 .WithRequired(e => e.Teams)
                 .HasForeignKey(e => new { e.teamID, e.lgID, e.yearID })
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Teams>()
+            modelBuilder.Entity<Team>()
                 .HasMany(e => e.Managers)
                 .WithRequired(e => e.Teams)
                 .HasForeignKey(e => new { e.teamID, e.lgID, e.yearID })
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Teams>()
+            modelBuilder.Entity<Team>()
                 .HasMany(e => e.ManagersHalf)
                 .WithRequired(e => e.Teams)
                 .HasForeignKey(e => new { e.teamID, e.lgID, e.yearID })
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Teams>()
+            modelBuilder.Entity<Team>()
                 .HasMany(e => e.Pitching)
                 .WithRequired(e => e.Teams)
                 .HasForeignKey(e => new { e.teamID, e.lgID, e.yearID })
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Teams>()
+            modelBuilder.Entity<Team>()
                 .HasMany(e => e.PitchingPost)
                 .WithRequired(e => e.Teams)
                 .HasForeignKey(e => new { e.teamID, e.lgID, e.yearID })
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Teams>()
+            modelBuilder.Entity<Team>()
                 .HasMany(e => e.Salaries)
                 .WithRequired(e => e.Teams)
                 .HasForeignKey(e => new { e.teamID, e.lgID, e.yearID })
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Teams>()
+            modelBuilder.Entity<Team>()
                 .HasMany(e => e.SeriesPost)
                 .WithRequired(e => e.Teams)
                 .HasForeignKey(e => new { e.teamIDwinner, e.lgIDwinner, e.yearID })
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Teams>()
-                .HasMany(e => e.SeriesPost1)
-                .WithOptional(e => e.Teams1)
-                .HasForeignKey(e => new { e.teamIDloser, e.lgIDloser, e.yearID });
+            //modelBuilder.Entity<Team>()
+            //    .HasMany(e => e.SeriesPost1)
+            //    .WithOptional(e => e.Teams1)
+            //    .HasForeignKey(e => new { e.teamIDloser, e.lgIDloser, e.yearID });
 
-            modelBuilder.Entity<Teams>()
+            modelBuilder.Entity<Team>()
                 .HasMany(e => e.TeamsHalf)
                 .WithRequired(e => e.Teams)
                 .HasForeignKey(e => new { e.teamID, e.lgID, e.yearID })

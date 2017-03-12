@@ -13,9 +13,9 @@ namespace BaseballHistoryAPI.Controllers
     {
         BaseballStatsModel db = new BaseballStatsModel();
 
-        private bool AllstarFullExists(int key)
+        private bool AllstarFullExists(string playerID, string teamID, string lgID, int yearID, string gameID)
         {
-            return db.AllstarFull.Any(p => p.Id == key);
+            return db.AllstarFull.Any(p => p.playerID == playerID && p.teamID == teamID && p.lgID == lgID && p.yearID == yearID && p.gameID == gameID);
         }
 
         [EnableQuery]
@@ -24,9 +24,9 @@ namespace BaseballHistoryAPI.Controllers
             return db.AllstarFull;
         }
         [EnableQuery]
-        public SingleResult<AllstarFull> Get([FromODataUri] int key)
+        public SingleResult<AllstarFull> Get([FromODataUri] string playerID, [FromODataUri] string teamID, [FromODataUri] string lgID, [FromODataUri] int yearID, [FromODataUri] string gameID)
         {
-            IQueryable<AllstarFull> result = db.AllstarFull.Where(p => p.Id == key);
+            IQueryable<AllstarFull> result = db.AllstarFull.Where(p => p.playerID == playerID && p.teamID == teamID && p.lgID == lgID && p.yearID == yearID && p.gameID == gameID);
             return SingleResult.Create(result);
         }
 

@@ -26,6 +26,6 @@ namespace BaseballHistoryAPI.Models
 
         public virtual Master Master { get; set; }
 
-        public virtual Schools Schools { get; set; }
+        public virtual School Schools { get; set; }
     }
 }

@@ -30,7 +30,7 @@ namespace BaseballHistoryAPI.Models
             ManagersHalf = new HashSet<ManagersHalf>();
             Pitching = new HashSet<Pitching>();
             PitchingPost = new HashSet<PitchingPost>();
-            Salaries = new HashSet<Salaries>();
+            Salaries = new HashSet<Salary>();
         }
 
         [Key]
@@ -153,6 +153,6 @@ namespace BaseballHistoryAPI.Models
         public virtual ICollection<PitchingPost> PitchingPost { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Salaries> Salaries { get; set; }
+        public virtual ICollection<Salary> Salaries { get; set; }
     }
 }

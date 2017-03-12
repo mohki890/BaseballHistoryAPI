@@ -40,8 +40,6 @@ namespace BaseballHistoryAPI.Models
 
         public int? attendance { get; set; }
 
-        public virtual Teams Teams { get; set; }
-
-        public virtual Park Parks { get; set; }
+        public virtual Team Teams { get; set; }
     }
 }

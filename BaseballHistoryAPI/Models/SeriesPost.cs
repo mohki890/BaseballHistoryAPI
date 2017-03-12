@@ -41,8 +41,8 @@ namespace BaseballHistoryAPI.Models
 
         public short? ties { get; set; }
 
-        public virtual Teams Teams { get; set; }
+        public virtual Team Teams { get; set; }
 
-        public virtual Teams Teams1 { get; set; }
+        public virtual Team Teams1 { get; set; }
     }
 }

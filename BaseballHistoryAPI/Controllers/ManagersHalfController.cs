@@ -12,9 +12,9 @@ namespace BaseballHistoryAPI.Controllers
     public class ManagersHalfController : ODataController
     {
         BaseballStatsModel db = new BaseballStatsModel();
-        private bool ManagersHalfExists(int key)
+        private bool ManagersHalfExists(string playerID, string teamID, string lgID, int yearID, int inseason, int half)
         {
-            return db.ManagersHalf.Any(p => p.Id == key);
+            return db.ManagersHalf.Any(p => p.playerID == playerID && p.teamID == teamID && p.lgID == lgID && p.yearID == yearID && p.inseason == inseason && p.half == half);
         }
 
         [EnableQuery]
@@ -23,9 +23,9 @@ namespace BaseballHistoryAPI.Controllers
             return db.ManagersHalf;
         }
         [EnableQuery]
-        public SingleResult<ManagersHalf> Get([FromODataUri] int key)
+        public SingleResult<ManagersHalf> Get([FromODataUri] string playerID, [FromODataUri] string teamID, [FromODataUri] string lgID, [FromODataUri] int yearID, [FromODataUri] int inseason, [FromODataUri] int half)
         {
-            IQueryable<ManagersHalf> result = db.ManagersHalf.Where(p => p.Id == key);
+            IQueryable<ManagersHalf> result = db.ManagersHalf.Where(p => p.playerID == playerID && p.teamID == teamID && p.lgID == lgID && p.yearID == yearID && p.inseason == inseason && p.half == half);
             return SingleResult.Create(result);
         }
 

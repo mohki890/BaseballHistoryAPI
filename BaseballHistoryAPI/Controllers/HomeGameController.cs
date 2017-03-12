@@ -12,9 +12,9 @@ namespace BaseballHistoryAPI.Controllers
     public class HomeGameController : ODataController
     {
         BaseballStatsModel db = new BaseballStatsModel();
-        private bool HomeGamesExists(int key)
+        private bool HomeGamesExists(string teamID, string lgID, int yearID, string parkkey)
         {
-            return db.HomeGames.Any(p => p.Id == key);
+            return db.HomeGames.Any(p => p.teamID == teamID && p.lgID == lgID && p.yearID == yearID && p.parkkey == parkkey);
         }
 
         [EnableQuery]
@@ -23,9 +23,9 @@ namespace BaseballHistoryAPI.Controllers
             return db.HomeGames;
         }
         [EnableQuery]
-        public SingleResult<HomeGame> Get([FromODataUri] int key)
+        public SingleResult<HomeGame> Get([FromODataUri] string teamID, [FromODataUri] string lgID, [FromODataUri] int yearID, [FromODataUri] string parkkey)
         {
-            IQueryable<HomeGame> result = db.HomeGames.Where(p => p.Id == key);
+            IQueryable<HomeGame> result = db.HomeGames.Where(p => p.teamID == teamID && p.lgID == lgID && p.yearID == yearID && p.parkkey == parkkey);
             return SingleResult.Create(result);
         }
 

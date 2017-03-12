@@ -12,9 +12,9 @@ namespace BaseballHistoryAPI.Controllers
     public class HallOfFameController : ODataController
     {
         BaseballStatsModel db = new BaseballStatsModel();
-        private bool HallOfFameExists(int key)
+        private bool HallOfFameExists(string playerID, int yearID, string votedBy)
         {
-            return db.HallOfFame.Any(p => p.Id == key);
+            return db.HallOfFame.Any(p => p.playerID == playerID && p.yearid == yearID && p.votedBy == votedBy);
         }
 
         [EnableQuery]
@@ -23,9 +23,9 @@ namespace BaseballHistoryAPI.Controllers
             return db.HallOfFame;
         }
         [EnableQuery]
-        public SingleResult<HallOfFame> Get([FromODataUri] int key)
+        public SingleResult<HallOfFame> Get([FromODataUri] string playerID, [FromODataUri] int yearID, [FromODataUri] string votedBy)
         {
-            IQueryable<HallOfFame> result = db.HallOfFame.Where(p => p.Id == key);
+            IQueryable<HallOfFame> result = db.HallOfFame.Where(p => p.playerID == playerID && p.yearid == yearID && p.votedBy == votedBy);
             return SingleResult.Create(result);
         }
 

@@ -12,9 +12,9 @@ namespace BaseballHistoryAPI.Controllers
     public class CollegePlayingController : ODataController
     {
         BaseballStatsModel db = new BaseballStatsModel();
-        private bool CollegePlayingExists(int key)
+        private bool CollegePlayingExists(string playerID, int yearID, string schoolID)
         {
-            return db.CollegePlaying.Any(p => p.Id == key);
+            return db.CollegePlaying.Any(p => p.playerID == playerID && p.yearID == yearID && p.schoolID == schoolID);
         }
 
         [EnableQuery]
@@ -23,9 +23,9 @@ namespace BaseballHistoryAPI.Controllers
             return db.CollegePlaying;
         }
         [EnableQuery]
-        public SingleResult<CollegePlaying> Get([FromODataUri] int key)
+        public SingleResult<CollegePlaying> Get([FromODataUri] string playerID, [FromODataUri] int yearID, [FromODataUri] string schoolID)
         {
-            IQueryable<CollegePlaying> result = db.CollegePlaying.Where(p => p.Id == key);
+            IQueryable<CollegePlaying> result = db.CollegePlaying.Where(p => p.playerID == playerID && p.yearID == yearID && p.schoolID == schoolID);
             return SingleResult.Create(result);
         }
 

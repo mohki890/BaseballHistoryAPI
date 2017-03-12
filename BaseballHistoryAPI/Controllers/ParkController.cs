@@ -12,9 +12,9 @@ namespace BaseballHistoryAPI.Controllers
     public class ParkController : ODataController
     {
         BaseballStatsModel db = new BaseballStatsModel();
-        private bool ProductExists(int key)
+        private bool ProductExists(int ID)
         {
-            return db.Parks.Any(p => p.Id == key);
+            return db.Parks.Any(p => p.ID == ID);
         }
 
         [EnableQuery]
@@ -23,9 +23,9 @@ namespace BaseballHistoryAPI.Controllers
             return db.Parks;
         }
         [EnableQuery]
-        public SingleResult<Park> Get([FromODataUri] int key)
+        public SingleResult<Park> Get([FromODataUri] int ID)
         {
-            IQueryable<Park> result = db.Parks.Where(p => p.Id == key);
+            IQueryable<Park> result = db.Parks.Where(p => p.ID == ID);
             return SingleResult.Create(result);
         }
 

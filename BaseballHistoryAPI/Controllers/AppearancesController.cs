@@ -12,9 +12,9 @@ namespace BaseballHistoryAPI.Controllers
     public class AppearancesController : ODataController
     {
         BaseballStatsModel db = new BaseballStatsModel();
-        private bool AppearancesExists(int key)
+        private bool AppearancesExists(string playerID, string teamID, string lgID, int yearID)
         {
-            return db.Appearances.Any(p => p.Id == key);
+            return db.Appearances.Any(p => p.playerID == playerID && p.teamID == teamID && p.lgID == lgID && p.yearID == yearID);
         }
 
         [EnableQuery]
@@ -23,9 +23,9 @@ namespace BaseballHistoryAPI.Controllers
             return db.Appearances;
         }
         [EnableQuery]
-        public SingleResult<Appearance> Get([FromODataUri] int key)
+        public SingleResult<Appearance> Get([FromODataUri] string playerID, [FromODataUri] string teamID, [FromODataUri] string lgID, [FromODataUri] int yearID)
         {
-            IQueryable<Appearance> result = db.Appearances.Where(p => p.Id == key);
+            IQueryable<Appearance> result = db.Appearances.Where(p => p.playerID == playerID && p.teamID == teamID && p.lgID == lgID && p.yearID == yearID);
             return SingleResult.Create(result);
         }
 

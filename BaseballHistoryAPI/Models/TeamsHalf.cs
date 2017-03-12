@@ -43,6 +43,6 @@ namespace BaseballHistoryAPI.Models
 
         public short? L { get; set; }
 
-        public virtual Teams Teams { get; set; }
+        public virtual Team Teams { get; set; }
     }
 }

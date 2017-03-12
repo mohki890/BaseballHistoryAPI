@@ -12,9 +12,9 @@ namespace BaseballHistoryAPI.Controllers
     public class TeamFieldingTotalsController : ODataController
     {
         BaseballStatsModel db = new BaseballStatsModel();
-        private bool TeamFieldingTotalsExists(int key)
+        private bool TeamFieldingTotalsExists(string teamID, string lgID, int yearID)
         {
-            return db.TeamFieldingTotals.Any(p => p.Id == key);
+            return db.TeamFieldingTotals.Any(p => p.teamID == teamID && p.lgID == lgID && p.yearID == yearID);
         }
 
         [EnableQuery]
@@ -23,9 +23,9 @@ namespace BaseballHistoryAPI.Controllers
             return db.TeamFieldingTotals;
         }
         [EnableQuery]
-        public SingleResult<TeamFieldingTotal> Get([FromODataUri] int key)
+        public SingleResult<TeamFieldingTotal> Get([FromODataUri] string teamID, [FromODataUri] string lgID, [FromODataUri] int yearID)
         {
-            IQueryable<TeamFieldingTotal> result = db.TeamFieldingTotals.Where(p => p.Id == key);
+            IQueryable<TeamFieldingTotal> result = db.TeamFieldingTotals.Where(p => p.teamID == teamID && p.lgID == lgID && p.yearID == yearID);
             return SingleResult.Create(result);
         }
 

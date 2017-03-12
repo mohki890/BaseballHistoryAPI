@@ -12,9 +12,9 @@ namespace BaseballHistoryAPI.Controllers
     public class PitchingPostController : ODataController
     {
         BaseballStatsModel db = new BaseballStatsModel();
-        private bool PitchingPostExists(int key)
+        private bool PitchingPostExists(string playerID, string teamID, string lgID, int yearID, string round)
         {
-            return db.PitchingPost.Any(p => p.Id == key);
+            return db.PitchingPost.Any(p => p.playerID == playerID && p.teamID == teamID && p.lgID == lgID && p.yearID == yearID && p.round == round);
         }
 
         [EnableQuery]
@@ -23,9 +23,9 @@ namespace BaseballHistoryAPI.Controllers
             return db.PitchingPost;
         }
         [EnableQuery]
-        public SingleResult<PitchingPost> Get([FromODataUri] int key)
+        public SingleResult<PitchingPost> Get([FromODataUri] string playerID, [FromODataUri] string teamID, [FromODataUri] string lgID, [FromODataUri] int yearID, [FromODataUri] string round)
         {
-            IQueryable<PitchingPost> result = db.PitchingPost.Where(p => p.Id == key);
+            IQueryable<PitchingPost> result = db.PitchingPost.Where(p => p.playerID == playerID && p.teamID == teamID && p.lgID == lgID && p.yearID == yearID && p.round == round);
             return SingleResult.Create(result);
         }
 
