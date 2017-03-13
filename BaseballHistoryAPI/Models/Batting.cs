@@ -42,10 +42,10 @@ namespace BaseballHistoryAPI.Models
         public short? H { get; set; }
 
         [Column("2B")]
-        public short? C2B { get; set; }
+        public short? H2B { get; set; }
 
         [Column("3B")]
-        public short? C3B { get; set; }
+        public short? H3B { get; set; }
 
         public short? HR { get; set; }
 

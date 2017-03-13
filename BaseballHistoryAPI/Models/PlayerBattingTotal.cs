@@ -20,10 +20,10 @@ namespace BaseballHistoryAPI.Models
         public int? H { get; set; }
 
         [Column("2B")]
-        public int? C2B { get; set; }
+        public int? H2B { get; set; }
 
         [Column("3B")]
-        public int? C3B { get; set; }
+        public int? H3B { get; set; }
 
         public int? HR { get; set; }
 
