@@ -28,6 +28,13 @@ namespace BaseballHistoryAPI.Controllers
             return SingleResult.Create(result);
         }
 
+        [EnableQuery(PageSize = 100)]
+        [ODataRoute("TeamFranchises({franchID})/Teams")]
+        public IQueryable<Team> GetTeams([FromODataUri] string franchID)
+        {
+            return db.TeamFranchises.Where(p => p.franchID == franchID).SelectMany(p => p.Teams);
+        }
+
         protected override void Dispose(bool disposing)
         {
             db.Dispose();

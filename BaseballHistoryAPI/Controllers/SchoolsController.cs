@@ -28,6 +28,13 @@ namespace BaseballHistoryAPI.Controllers
             return SingleResult.Create(result);
         }
 
+        [EnableQuery(PageSize = 100)]
+        [ODataRoute("Schools(schoolID={schoolID})/CollegePlaying")]
+        public IQueryable<CollegePlaying> GetCollegePlaying([FromODataUri] string schoolID)
+        {
+            return db.Schools.Where(p => p.schoolID == schoolID).SelectMany(p => p.CollegePlaying);
+        }
+
         protected override void Dispose(bool disposing)
         {
             db.Dispose();
