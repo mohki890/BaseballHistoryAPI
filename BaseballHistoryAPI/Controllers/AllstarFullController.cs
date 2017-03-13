@@ -15,13 +15,13 @@ namespace BaseballHistoryAPI.Controllers
             return db.AllstarFull.Any(p => p.playerID == playerID && p.teamID == teamID && p.lgID == lgID && p.yearID == yearID && p.gameID == gameID);
         }
 
-        [EnableQuery]
+        [EnableQuery(PageSize = 100)]
         public IQueryable<AllstarFull> Get()
         {
             return db.AllstarFull;
         }
 
-        [EnableQuery]
+        [EnableQuery(PageSize = 100)]
         [ODataRoute("AllstarFull(playerID={playerID},teamID={teamID},lgID={lgID},yearID={yearID},gameID={gameID})")]
         public SingleResult<AllstarFull> Get([FromODataUri] string playerID, [FromODataUri] string teamID, [FromODataUri] string lgID, [FromODataUri] int yearID, [FromODataUri] string gameID)
         {

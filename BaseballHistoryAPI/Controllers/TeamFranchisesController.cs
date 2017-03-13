@@ -14,13 +14,13 @@ namespace BaseballHistoryAPI.Controllers
             return db.TeamFranchises.Any(p => p.franchID == franchID);
         }
 
-        [EnableQuery]
+        [EnableQuery(PageSize = 100)]
         public IQueryable<TeamFranchise> Get()
         {
             return db.TeamFranchises;
         }
 
-        [EnableQuery]
+        [EnableQuery(PageSize = 100)]
         [ODataRoute("TeamFranchises({franchID})")]
         public SingleResult<TeamFranchise> Get([FromODataUri] string franchID)
         {

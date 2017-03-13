@@ -14,13 +14,13 @@ namespace BaseballHistoryAPI.Controllers
             return db.SeriesPost.Any(p => p.teamIDwinner == teamIDwinner && p.lgIDwinner == lgIDwinner && p.yearID == yearID && p.round == round);
         }
 
-        [EnableQuery]
+        [EnableQuery(PageSize = 100)]
         public IQueryable<SeriesPost> Get()
         {
             return db.SeriesPost;
         }
 
-        [EnableQuery]
+        [EnableQuery(PageSize = 100)]
         [ODataRoute("SeriesPost(teamIDwinner={teamIDwinner},lgIDwinner={lgIDwinner},yearID={yearID},round={round})")]
         public SingleResult<SeriesPost> Get([FromODataUri] string teamIDwinner, [FromODataUri] string lgIDwinner, [FromODataUri] int yearID, [FromODataUri] string round)
         {

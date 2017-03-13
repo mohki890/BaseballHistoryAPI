@@ -14,13 +14,13 @@ namespace BaseballHistoryAPI.Controllers
             return db.TeamsHalf.Any(p => p.teamID == teamID && p.lgID == lgID && p.yearID == yearID && p.Half == half);
         }
 
-        [EnableQuery]
+        [EnableQuery(PageSize = 100)]
         public IQueryable<TeamsHalf> Get()
         {
             return db.TeamsHalf;
         }
 
-        [EnableQuery]
+        [EnableQuery(PageSize = 100)]
         [ODataRoute("TeamsHalf(teamID={teamID},lgID={lgID},yearID={yearID},Half={Half})")]
         public SingleResult<TeamsHalf> Get([FromODataUri] string teamID, [FromODataUri] string lgID, [FromODataUri] int yearID, [FromODataUri] string half)
         {

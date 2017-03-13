@@ -14,13 +14,13 @@ namespace BaseballHistoryAPI.Controllers
             return db.FieldingOFsplit.Any(p => p.playerID == playerID && p.teamID == teamID && p.lgID == lgID && p.yearID == yearID && p.stint == stint && p.POS == POS);
         }
 
-        [EnableQuery]
+        [EnableQuery(PageSize = 100)]
         public IQueryable<FieldingOFsplit> Get()
         {
             return db.FieldingOFsplit;
         }
 
-        [EnableQuery]
+        [EnableQuery(PageSize = 100)]
         [ODataRoute("FieldingOFsplit(playerID={playerID},teamID={teamID},lgID={lgID},yearID={yearID},stint={stint},POS={POS})")]
         public SingleResult<FieldingOFsplit> Get([FromODataUri] string playerID, [FromODataUri] string teamID, [FromODataUri] string lgID, [FromODataUri] int yearID, [FromODataUri] int stint, [FromODataUri] string POS)
         {

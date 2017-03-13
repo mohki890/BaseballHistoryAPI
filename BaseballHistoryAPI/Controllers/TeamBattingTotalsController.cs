@@ -14,13 +14,13 @@ namespace BaseballHistoryAPI.Controllers
             return db.TeamBattingTotals.Any(p => p.teamID == teamID && p.lgID == lgID && p.yearID == yearID);
         }
 
-        [EnableQuery]
+        [EnableQuery(PageSize = 100)]
         public IQueryable<TeamBattingTotal> Get()
         {
             return db.TeamBattingTotals;
         }
 
-        [EnableQuery]
+        [EnableQuery(PageSize = 100)]
         [ODataRoute("TeamBattingTotals(teamID={teamID},lgID={lgID},yearID={yearID})")]
         public SingleResult<TeamBattingTotal> Get([FromODataUri] string teamID, [FromODataUri] string lgID, [FromODataUri] int yearID)
         {

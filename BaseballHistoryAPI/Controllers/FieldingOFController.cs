@@ -14,13 +14,13 @@ namespace BaseballHistoryAPI.Controllers
             return db.FieldingOF.Any(p => p.playerID == playerID && p.yearID == yearID && p.stint == stint);
         }
 
-        [EnableQuery]
+        [EnableQuery(PageSize = 100)]
         public IQueryable<FieldingOF> Get()
         {
             return db.FieldingOF;
         }
 
-        [EnableQuery]
+        [EnableQuery(PageSize = 100)]
         [ODataRoute("FieldingOF(playerID={playerID},yearID={yearID},stint={stint})")]
         public SingleResult<FieldingOF> Get([FromODataUri] string playerID, int yearID, int stint)
         {

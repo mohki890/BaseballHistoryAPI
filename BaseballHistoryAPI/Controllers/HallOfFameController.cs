@@ -14,13 +14,13 @@ namespace BaseballHistoryAPI.Controllers
             return db.HallOfFame.Any(p => p.playerID == playerID && p.yearid == yearID && p.votedBy == votedBy);
         }
 
-        [EnableQuery]
+        [EnableQuery(PageSize = 100)]
         public IQueryable<HallOfFame> Get()
         {
             return db.HallOfFame;
         }
 
-        [EnableQuery]
+        [EnableQuery(PageSize = 100)]
         [ODataRoute("HallOfFame(playerID={playerID},yearid={yearid},votedBy={votedBy})")]
         public SingleResult<HallOfFame> Get([FromODataUri] string playerID, [FromODataUri] int yearID, [FromODataUri] string votedBy)
         {

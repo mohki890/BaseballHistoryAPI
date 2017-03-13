@@ -14,13 +14,13 @@ namespace BaseballHistoryAPI.Controllers
             return db.AwardsSharePlayers.Any(p => p.playerID == playerID && p.lgID == lgID && p.yearID == yearID && p.awardID == awardID);
         }
 
-        [EnableQuery]
+        [EnableQuery(PageSize = 100)]
         public IQueryable<AwardsSharePlayer> Get()
         {
             return db.AwardsSharePlayers;
         }
 
-        [EnableQuery]
+        [EnableQuery(PageSize = 100)]
         [ODataRoute("AwardsSharePlayers(playerID={playerID},lgID={lgID},yearID={yearID},awardID={awardID})")]
         public SingleResult<AwardsSharePlayer> Get([FromODataUri] string playerID, [FromODataUri] string lgID, [FromODataUri] int yearID, [FromODataUri] string awardID)
         {

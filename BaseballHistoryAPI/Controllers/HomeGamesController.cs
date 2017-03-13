@@ -14,13 +14,13 @@ namespace BaseballHistoryAPI.Controllers
             return db.HomeGames.Any(p => p.teamID == teamID && p.lgID == lgID && p.yearID == yearID && p.parkkey == parkkey);
         }
 
-        [EnableQuery]
+        [EnableQuery(PageSize = 100)]
         public IQueryable<HomeGame> Get()
         {
             return db.HomeGames;
         }
 
-        [EnableQuery]
+        [EnableQuery(PageSize = 100)]
         [ODataRoute("HomeGames(teamID={teamID},lgID={lgID},yearID={yearID},parkkey={parkkey})")]
         public SingleResult<HomeGame> Get([FromODataUri] string teamID, [FromODataUri] string lgID, [FromODataUri] int yearID, [FromODataUri] string parkkey)
         {

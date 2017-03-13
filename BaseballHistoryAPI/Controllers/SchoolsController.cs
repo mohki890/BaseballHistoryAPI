@@ -14,13 +14,13 @@ namespace BaseballHistoryAPI.Controllers
             return db.Schools.Any(p => p.schoolID == schoolID);
         }
 
-        [EnableQuery]
+        [EnableQuery(PageSize = 100)]
         public IQueryable<School> Get()
         {
             return db.Schools;
         }
 
-        [EnableQuery]
+        [EnableQuery(PageSize = 100)]
         [ODataRoute("Schools(schoolID={schoolID})")]
         public SingleResult<School> Get([FromODataUri] string schoolID)
         {

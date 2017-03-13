@@ -14,13 +14,13 @@ namespace BaseballHistoryAPI.Controllers
             return db.Salaries.Any(p => p.playerID == playerID && p.teamID == teamID && p.lgID == lgID && p.yearID == yearID);
         }
 
-        [EnableQuery]
+        [EnableQuery(PageSize = 100)]
         public IQueryable<Salary> Get()
         {
             return db.Salaries;
         }
 
-        [EnableQuery]
+        [EnableQuery(PageSize = 100)]
         [ODataRoute("Salaries(playerID={playerID},teamID={teamID},lgID={lgID},yearID={yearID})")]
         public SingleResult<Salary> Get([FromODataUri] string playerID, [FromODataUri] string teamID, [FromODataUri] string lgID, [FromODataUri] int yearID)
         {

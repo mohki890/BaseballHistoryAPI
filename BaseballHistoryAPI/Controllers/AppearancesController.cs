@@ -14,13 +14,13 @@ namespace BaseballHistoryAPI.Controllers
             return db.Appearances.Any(p => p.playerID == playerID && p.teamID == teamID && p.lgID == lgID && p.yearID == yearID);
         }
 
-        [EnableQuery]
+        [EnableQuery(PageSize = 100)]
         public IQueryable<Appearance> Get()
         {
             return db.Appearances;
         }
 
-        [EnableQuery]
+        [EnableQuery(PageSize = 100)]
         [ODataRoute("Appearances(playerID={playerID},teamID={teamID},lgID={lgID},yearID={yearID})")]
         public SingleResult<Appearance> Get([FromODataUri] string playerID, [FromODataUri] string teamID, [FromODataUri] string lgID, [FromODataUri] int yearID)
         {

@@ -14,13 +14,13 @@ namespace BaseballHistoryAPI.Controllers
             return db.Parks.Any(p => p.ID == ID);
         }
 
-        [EnableQuery]
+        [EnableQuery(PageSize = 100)]
         public IQueryable<Park> Get()
         {
             return db.Parks;
         }
 
-        [EnableQuery]
+        [EnableQuery(PageSize = 100)]
         [ODataRoute("Parks(ID={ID})")]
         public SingleResult<Park> Get([FromODataUri] int ID)
         {

@@ -14,13 +14,13 @@ namespace BaseballHistoryAPI.Controllers
             return db.CollegePlaying.Any(p => p.playerID == playerID && p.yearID == yearID && p.schoolID == schoolID);
         }
 
-        [EnableQuery]
+        [EnableQuery(PageSize = 100)]
         public IQueryable<CollegePlaying> Get()
         {
             return db.CollegePlaying;
         }
 
-        [EnableQuery]
+        [EnableQuery(PageSize = 100)]
         [ODataRoute("CollegePlaying(playerID={playerID},yearID={yearID},schoolID={schoolID})")]
         public SingleResult<CollegePlaying> Get([FromODataUri] string playerID, [FromODataUri] int yearID, [FromODataUri] string schoolID)
         {

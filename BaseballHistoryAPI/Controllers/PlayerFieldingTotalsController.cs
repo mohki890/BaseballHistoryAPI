@@ -14,13 +14,13 @@ namespace BaseballHistoryAPI.Controllers
             return db.PlayerFieldingTotals.Any(p => p.playerID == playerID && p.POS == POS);
         }
 
-        [EnableQuery]
+        [EnableQuery(PageSize = 100)]
         public IQueryable<PlayerFieldingTotal> Get()
         {
             return db.PlayerFieldingTotals;
         }
 
-        [EnableQuery]
+        [EnableQuery(PageSize = 100)]
         [ODataRoute("PlayerFieldingTotals(playerID={playerID},POS={POS})")]
         public SingleResult<PlayerFieldingTotal> Get([FromODataUri] string playerID, [FromODataUri] string POS)
         {
