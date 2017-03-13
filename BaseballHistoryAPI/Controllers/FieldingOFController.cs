@@ -1,11 +1,8 @@
-﻿using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Web.Http;
 using System.Web.OData;
 using BaseballHistoryAPI.Models;
+using System.Web.OData.Routing;
 
 namespace BaseballHistoryAPI.Controllers
 {
@@ -22,7 +19,9 @@ namespace BaseballHistoryAPI.Controllers
         {
             return db.FieldingOF;
         }
+
         [EnableQuery]
+        [ODataRoute("FieldingOF(playerID={playerID},yearID={yearID},stint={stint})")]
         public SingleResult<FieldingOF> Get([FromODataUri] string playerID, int yearID, int stint)
         {
             IQueryable<FieldingOF> result = db.FieldingOF.Where(p => p.playerID == playerID && p.yearID == yearID && p.stint == stint);

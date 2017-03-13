@@ -1,11 +1,8 @@
-﻿using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Web.Http;
 using System.Web.OData;
 using BaseballHistoryAPI.Models;
+using System.Web.OData.Routing;
 
 namespace BaseballHistoryAPI.Controllers
 {
@@ -22,7 +19,9 @@ namespace BaseballHistoryAPI.Controllers
         {
             return db.TeamBattingTotals;
         }
+
         [EnableQuery]
+        [ODataRoute("TeamBattingTotals(teamID={teamID},lgID={lgID},yearID={yearID})")]
         public SingleResult<TeamBattingTotal> Get([FromODataUri] string teamID, [FromODataUri] string lgID, [FromODataUri] int yearID)
         {
             IQueryable<TeamBattingTotal> result = db.TeamBattingTotals.Where(p => p.teamID == teamID && p.lgID == lgID && p.yearID == yearID);

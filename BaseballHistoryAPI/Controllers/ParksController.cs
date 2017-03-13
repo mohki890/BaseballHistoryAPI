@@ -1,15 +1,12 @@
-﻿using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Web.Http;
 using System.Web.OData;
 using BaseballHistoryAPI.Models;
+using System.Web.OData.Routing;
 
 namespace BaseballHistoryAPI.Controllers
 {
-    public class ParkController : ODataController
+    public class ParksController : ODataController
     {
         BaseballStatsModel db = new BaseballStatsModel();
         private bool ProductExists(int ID)
@@ -22,7 +19,9 @@ namespace BaseballHistoryAPI.Controllers
         {
             return db.Parks;
         }
+
         [EnableQuery]
+        [ODataRoute("Parks(ID={ID})")]
         public SingleResult<Park> Get([FromODataUri] int ID)
         {
             IQueryable<Park> result = db.Parks.Where(p => p.ID == ID);

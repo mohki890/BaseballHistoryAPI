@@ -1,10 +1,8 @@
 namespace BaseballHistoryAPI.Models
 {
-    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
 
     public partial class Team
     {
@@ -25,7 +23,6 @@ namespace BaseballHistoryAPI.Models
             PitchingPost = new HashSet<PitchingPost>();
             Salaries = new HashSet<Salary>();
             SeriesPost = new HashSet<SeriesPost>();
-            //SeriesPost1 = new HashSet<SeriesPost>();
             TeamsHalf = new HashSet<TeamsHalf>();
         }
 

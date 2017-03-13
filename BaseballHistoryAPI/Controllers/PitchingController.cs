@@ -1,11 +1,8 @@
-﻿using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Web.Http;
 using System.Web.OData;
 using BaseballHistoryAPI.Models;
+using System.Web.OData.Routing;
 
 namespace BaseballHistoryAPI.Controllers
 {
@@ -22,7 +19,9 @@ namespace BaseballHistoryAPI.Controllers
         {
             return db.Pitching;
         }
+
         [EnableQuery]
+        [ODataRoute("Pitching(playerID={playerID},teamID={teamID},lgID={lgID},yearID={yearID},stint={stint})")]
         public SingleResult<Pitching> Get([FromODataUri] string playerID, [FromODataUri] string teamID, [FromODataUri] string lgID, [FromODataUri] int yearID, [FromODataUri] int stint)
         {
             IQueryable<Pitching> result = db.Pitching.Where(p => p.playerID == playerID && p.teamID == teamID && p.lgID == lgID && p.yearID == yearID && p.stint == stint);

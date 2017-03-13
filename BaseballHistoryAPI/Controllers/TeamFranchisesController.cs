@@ -1,20 +1,17 @@
-﻿using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Web.Http;
 using System.Web.OData;
 using BaseballHistoryAPI.Models;
+using System.Web.OData.Routing;
 
 namespace BaseballHistoryAPI.Controllers
 {
     public class TeamFranchisesController : ODataController
     {
         BaseballStatsModel db = new BaseballStatsModel();
-        private bool TeamFranchisesExists(string key)
+        private bool TeamFranchisesExists(string franchID)
         {
-            return db.TeamFranchises.Any(p => p.franchID == key);
+            return db.TeamFranchises.Any(p => p.franchID == franchID);
         }
 
         [EnableQuery]
@@ -22,10 +19,12 @@ namespace BaseballHistoryAPI.Controllers
         {
             return db.TeamFranchises;
         }
+
         [EnableQuery]
-        public SingleResult<TeamFranchise> Get([FromODataUri] string key)
+        [ODataRoute("TeamFranchises({franchID})")]
+        public SingleResult<TeamFranchise> Get([FromODataUri] string franchID)
         {
-            IQueryable<TeamFranchise> result = db.TeamFranchises.Where(p => p.franchID == key);
+            IQueryable<TeamFranchise> result = db.TeamFranchises.Where(p => p.franchID == franchID);
             return SingleResult.Create(result);
         }
 

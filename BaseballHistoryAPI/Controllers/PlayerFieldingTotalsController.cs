@@ -1,20 +1,17 @@
-﻿using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Web.Http;
 using System.Web.OData;
 using BaseballHistoryAPI.Models;
+using System.Web.OData.Routing;
 
 namespace BaseballHistoryAPI.Controllers
 {
     public class PlayerFieldingTotalsController : ODataController
     {
         BaseballStatsModel db = new BaseballStatsModel();
-        private bool PlayerFieldingTotalsExists(string key)
+        private bool PlayerFieldingTotalsExists(string playerID, string POS)
         {
-            return db.PlayerFieldingTotals.Any(p => p.playerID == key);
+            return db.PlayerFieldingTotals.Any(p => p.playerID == playerID && p.POS == POS);
         }
 
         [EnableQuery]
@@ -22,10 +19,12 @@ namespace BaseballHistoryAPI.Controllers
         {
             return db.PlayerFieldingTotals;
         }
+
         [EnableQuery]
-        public SingleResult<PlayerFieldingTotal> Get([FromODataUri] string key)
+        [ODataRoute("PlayerFieldingTotals(playerID={playerID},POS={POS})")]
+        public SingleResult<PlayerFieldingTotal> Get([FromODataUri] string playerID, [FromODataUri] string POS)
         {
-            IQueryable<PlayerFieldingTotal> result = db.PlayerFieldingTotals.Where(p => p.playerID == key);
+            IQueryable<PlayerFieldingTotal> result = db.PlayerFieldingTotals.Where(p => p.playerID == playerID && p.POS == POS);
             return SingleResult.Create(result);
         }
 

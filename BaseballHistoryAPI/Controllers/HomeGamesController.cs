@@ -1,15 +1,12 @@
-﻿using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Web.Http;
 using System.Web.OData;
 using BaseballHistoryAPI.Models;
+using System.Web.OData.Routing;
 
 namespace BaseballHistoryAPI.Controllers
 {
-    public class HomeGameController : ODataController
+    public class HomeGamesController : ODataController
     {
         BaseballStatsModel db = new BaseballStatsModel();
         private bool HomeGamesExists(string teamID, string lgID, int yearID, string parkkey)
@@ -22,7 +19,9 @@ namespace BaseballHistoryAPI.Controllers
         {
             return db.HomeGames;
         }
+
         [EnableQuery]
+        [ODataRoute("HomeGames(teamID={teamID},lgID={lgID},yearID={yearID},parkkey={parkkey})")]
         public SingleResult<HomeGame> Get([FromODataUri] string teamID, [FromODataUri] string lgID, [FromODataUri] int yearID, [FromODataUri] string parkkey)
         {
             IQueryable<HomeGame> result = db.HomeGames.Where(p => p.teamID == teamID && p.lgID == lgID && p.yearID == yearID && p.parkkey == parkkey);

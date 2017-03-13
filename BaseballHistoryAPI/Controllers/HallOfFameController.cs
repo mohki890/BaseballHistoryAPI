@@ -1,11 +1,8 @@
-﻿using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Web.Http;
 using System.Web.OData;
 using BaseballHistoryAPI.Models;
+using System.Web.OData.Routing;
 
 namespace BaseballHistoryAPI.Controllers
 {
@@ -22,7 +19,9 @@ namespace BaseballHistoryAPI.Controllers
         {
             return db.HallOfFame;
         }
+
         [EnableQuery]
+        [ODataRoute("HallOfFame(playerID={playerID},yearid={yearid},votedBy={votedBy})")]
         public SingleResult<HallOfFame> Get([FromODataUri] string playerID, [FromODataUri] int yearID, [FromODataUri] string votedBy)
         {
             IQueryable<HallOfFame> result = db.HallOfFame.Where(p => p.playerID == playerID && p.yearid == yearID && p.votedBy == votedBy);
