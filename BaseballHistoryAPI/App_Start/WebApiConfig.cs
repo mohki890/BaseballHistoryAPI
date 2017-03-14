@@ -24,6 +24,9 @@ namespace BaseballHistoryAPI
             // Web API routes
             config.MapHttpAttributeRoutes();
 
+            // Enable OData $count, $filter, $orderby, $expand, $select and $maxtop
+            config.Count().Filter().OrderBy().Expand().Select().MaxTop(null);
+
             ODataModelBuilder builder = new ODataConventionModelBuilder();
             builder.EntitySet<AllstarFull>("AllstarFull").EntityType.HasKey(p => p.playerID).HasKey(p => p.teamID).HasKey(p => p.lgID).HasKey(p => p.yearID).HasKey(p => p.gameID);
             builder.EntitySet<Appearance>("Appearances").EntityType.HasKey(p => p.playerID).HasKey(p => p.teamID).HasKey(p => p.lgID).HasKey(p => p.yearID);
