@@ -3,33 +3,33 @@ namespace BaseballHistoryAPI.Models
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    public partial class AwardsSharePlayer
+    public class AwardsSharePlayer
     {
         [Key]
         [Column(Order = 0)]
         [StringLength(9)]
-        public string playerID { get; set; }
+        public string PlayerId { get; set; }
 
         [Key]
         [Column(Order = 1)]
         [StringLength(2)]
-        public string lgID { get; set; }
+        public string LgId { get; set; }
 
         [Key]
         [Column(Order = 2)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public short yearID { get; set; }
+        public short YearId { get; set; }
 
         [Key]
         [Column(Order = 3)]
         [StringLength(25)]
-        public string awardID { get; set; }
+        public string AwardId { get; set; }
 
-        public double? pointsWon { get; set; }
+        public double? PointsWon { get; set; }
 
-        public short? pointsMax { get; set; }
+        public short? PointsMax { get; set; }
 
-        public double? votesFirst { get; set; }
+        public double? VotesFirst { get; set; }
 
         public virtual Master Master { get; set; }
     }

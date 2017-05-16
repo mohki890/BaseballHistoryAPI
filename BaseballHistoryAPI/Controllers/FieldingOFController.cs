@@ -6,31 +6,31 @@ using System.Web.OData.Routing;
 
 namespace BaseballHistoryAPI.Controllers
 {
-    public class FieldingOFController : ODataController
+    public class FieldingOfController : ODataController
     {
-        BaseballStatsModel db = new BaseballStatsModel();
-        private bool FieldingOFExists(string playerID, int yearID, int stint)
+        BaseballStatsModel _db = new BaseballStatsModel();
+        private bool FieldingOfExists(string playerId, int yearId, int stint)
         {
-            return db.FieldingOF.Any(p => p.playerID == playerID && p.yearID == yearID && p.stint == stint);
+            return _db.FieldingOf.Any(p => p.PlayerId == playerId && p.YearId == yearId && p.Stint == stint);
         }
 
         [EnableQuery(PageSize = 100)]
-        public IQueryable<FieldingOF> Get()
+        public IQueryable<FieldingOf> Get()
         {
-            return db.FieldingOF;
+            return _db.FieldingOf;
         }
 
         [EnableQuery(PageSize = 100)]
         [ODataRoute("FieldingOF(playerID={playerID},yearID={yearID},stint={stint})")]
-        public SingleResult<FieldingOF> Get([FromODataUri] string playerID, int yearID, int stint)
+        public SingleResult<FieldingOf> Get([FromODataUri] string playerId, int yearId, int stint)
         {
-            IQueryable<FieldingOF> result = db.FieldingOF.Where(p => p.playerID == playerID && p.yearID == yearID && p.stint == stint);
+            IQueryable<FieldingOf> result = _db.FieldingOf.Where(p => p.PlayerId == playerId && p.YearId == yearId && p.Stint == stint);
             return SingleResult.Create(result);
         }
 
         protected override void Dispose(bool disposing)
         {
-            db.Dispose();
+            _db.Dispose();
             base.Dispose(disposing);
         }
     }

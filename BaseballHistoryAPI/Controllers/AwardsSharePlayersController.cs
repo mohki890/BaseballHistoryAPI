@@ -8,29 +8,29 @@ namespace BaseballHistoryAPI.Controllers
 {
     public class AwardsSharePlayersController : ODataController
     {
-        BaseballStatsModel db = new BaseballStatsModel();
-        private bool AwardsSharePlayersExists(string playerID, string lgID, int yearID, string awardID)
+        BaseballStatsModel _db = new BaseballStatsModel();
+        private bool AwardsSharePlayersExists(string playerId, string lgId, int yearId, string awardId)
         {
-            return db.AwardsSharePlayers.Any(p => p.playerID == playerID && p.lgID == lgID && p.yearID == yearID && p.awardID == awardID);
+            return _db.AwardsSharePlayers.Any(p => p.PlayerId == playerId && p.LgId == lgId && p.YearId == yearId && p.AwardId == awardId);
         }
 
         [EnableQuery(PageSize = 100)]
         public IQueryable<AwardsSharePlayer> Get()
         {
-            return db.AwardsSharePlayers;
+            return _db.AwardsSharePlayers;
         }
 
         [EnableQuery(PageSize = 100)]
         [ODataRoute("AwardsSharePlayers(playerID={playerID},lgID={lgID},yearID={yearID},awardID={awardID})")]
-        public SingleResult<AwardsSharePlayer> Get([FromODataUri] string playerID, [FromODataUri] string lgID, [FromODataUri] int yearID, [FromODataUri] string awardID)
+        public SingleResult<AwardsSharePlayer> Get([FromODataUri] string playerId, [FromODataUri] string lgId, [FromODataUri] int yearId, [FromODataUri] string awardId)
         {
-            IQueryable<AwardsSharePlayer> result = db.AwardsSharePlayers.Where(p => p.playerID == playerID && p.lgID == lgID && p.yearID == yearID && p.awardID == awardID);
+            IQueryable<AwardsSharePlayer> result = _db.AwardsSharePlayers.Where(p => p.PlayerId == playerId && p.LgId == lgId && p.YearId == yearId && p.AwardId == awardId);
             return SingleResult.Create(result);
         }
 
         protected override void Dispose(bool disposing)
         {
-            db.Dispose();
+            _db.Dispose();
             base.Dispose(disposing);
         }
     }

@@ -8,29 +8,29 @@ namespace BaseballHistoryAPI.Controllers
 {
     public class TeamBattingTotalsController : ODataController
     {
-        BaseballStatsModel db = new BaseballStatsModel();
-        private bool TeamBattingTotalsExists(string teamID, string lgID, int yearID)
+        BaseballStatsModel _db = new BaseballStatsModel();
+        private bool TeamBattingTotalsExists(string teamId, string lgId, int yearId)
         {
-            return db.TeamBattingTotals.Any(p => p.teamID == teamID && p.lgID == lgID && p.yearID == yearID);
+            return _db.TeamBattingTotals.Any(p => p.TeamId == teamId && p.LgId == lgId && p.YearId == yearId);
         }
 
         [EnableQuery(PageSize = 100)]
         public IQueryable<TeamBattingTotal> Get()
         {
-            return db.TeamBattingTotals;
+            return _db.TeamBattingTotals;
         }
 
         [EnableQuery(PageSize = 100)]
         [ODataRoute("TeamBattingTotals(teamID={teamID},lgID={lgID},yearID={yearID})")]
-        public SingleResult<TeamBattingTotal> Get([FromODataUri] string teamID, [FromODataUri] string lgID, [FromODataUri] int yearID)
+        public SingleResult<TeamBattingTotal> Get([FromODataUri] string teamId, [FromODataUri] string lgId, [FromODataUri] int yearId)
         {
-            IQueryable<TeamBattingTotal> result = db.TeamBattingTotals.Where(p => p.teamID == teamID && p.lgID == lgID && p.yearID == yearID);
+            IQueryable<TeamBattingTotal> result = _db.TeamBattingTotals.Where(p => p.TeamId == teamId && p.LgId == lgId && p.YearId == yearId);
             return SingleResult.Create(result);
         }
 
         protected override void Dispose(bool disposing)
         {
-            db.Dispose();
+            _db.Dispose();
             base.Dispose(disposing);
         }
     }

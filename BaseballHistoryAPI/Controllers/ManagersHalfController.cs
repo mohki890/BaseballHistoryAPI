@@ -8,29 +8,29 @@ namespace BaseballHistoryAPI.Controllers
 {
     public class ManagersHalfController : ODataController
     {
-        BaseballStatsModel db = new BaseballStatsModel();
-        private bool ManagersHalfExists(string playerID, string teamID, string lgID, int yearID, int inseason, int half)
+        BaseballStatsModel _db = new BaseballStatsModel();
+        private bool ManagersHalfExists(string playerId, string teamId, string lgId, int yearId, int inseason, int half)
         {
-            return db.ManagersHalf.Any(p => p.playerID == playerID && p.teamID == teamID && p.lgID == lgID && p.yearID == yearID && p.inseason == inseason && p.half == half);
+            return _db.ManagersHalf.Any(p => p.PlayerId == playerId && p.TeamId == teamId && p.LgId == lgId && p.YearId == yearId && p.Inseason == inseason && p.Half == half);
         }
 
         [EnableQuery(PageSize = 100)]
         public IQueryable<ManagersHalf> Get()
         {
-            return db.ManagersHalf;
+            return _db.ManagersHalf;
         }
 
         [EnableQuery(PageSize = 100)]
         [ODataRoute("ManagersHalf(playerID={playerID},teamID={teamID},lgID={lgID},yearID={yearID},inseason={inseason},half={half})")]
-        public SingleResult<ManagersHalf> Get([FromODataUri] string playerID, [FromODataUri] string teamID, [FromODataUri] string lgID, [FromODataUri] int yearID, [FromODataUri] int inseason, [FromODataUri] int half)
+        public SingleResult<ManagersHalf> Get([FromODataUri] string playerId, [FromODataUri] string teamId, [FromODataUri] string lgId, [FromODataUri] int yearId, [FromODataUri] int inseason, [FromODataUri] int half)
         {
-            IQueryable<ManagersHalf> result = db.ManagersHalf.Where(p => p.playerID == playerID && p.teamID == teamID && p.lgID == lgID && p.yearID == yearID && p.inseason == inseason && p.half == half);
+            IQueryable<ManagersHalf> result = _db.ManagersHalf.Where(p => p.PlayerId == playerId && p.TeamId == teamId && p.LgId == lgId && p.YearId == yearId && p.Inseason == inseason && p.Half == half);
             return SingleResult.Create(result);
         }
 
         protected override void Dispose(bool disposing)
         {
-            db.Dispose();
+            _db.Dispose();
             base.Dispose(disposing);
         }
     }

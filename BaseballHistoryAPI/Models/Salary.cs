@@ -3,27 +3,27 @@ namespace BaseballHistoryAPI.Models
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    public partial class Salary
+    public class Salary
     {
         [Key]
         [Column(Order = 0)]
         [StringLength(9)]
-        public string playerID { get; set; }
+        public string PlayerId { get; set; }
 
         [Key]
         [Column(Order = 1)]
         [StringLength(3)]
-        public string teamID { get; set; }
+        public string TeamId { get; set; }
 
         [Key]
         [Column(Order = 2)]
         [StringLength(2)]
-        public string lgID { get; set; }
+        public string LgId { get; set; }
 
         [Key]
         [Column(Order = 3)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public short yearID { get; set; }
+        public short YearId { get; set; }
 
         public double? salary { get; set; }
 

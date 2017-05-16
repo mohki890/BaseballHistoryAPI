@@ -4,38 +4,38 @@ namespace BaseballHistoryAPI.Models
     using System.ComponentModel.DataAnnotations.Schema;
 
     [Table("AllstarFull")]
-    public partial class AllstarFull
+    public class AllstarFull
     {
         [Key]
         [Column(Order = 0)]
         [StringLength(9)]
-        public string playerID { get; set; }
+        public string PlayerId { get; set; }
 
         [Key]
         [Column(Order = 1)]
         [StringLength(3)]
-        public string teamID { get; set; }
+        public string TeamId { get; set; }
 
         [Key]
         [Column(Order = 2)]
         [StringLength(2)]
-        public string lgID { get; set; }
+        public string LgId { get; set; }
 
         [Key]
         [Column(Order = 3)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public short yearID { get; set; }
+        public short YearId { get; set; }
 
         [Key]
         [Column(Order = 4)]
         [StringLength(12)]
-        public string gameID { get; set; }
+        public string GameId { get; set; }
 
-        public short? startingPos { get; set; }
+        public short? StartingPos { get; set; }
 
-        public short gameNum { get; set; }
+        public short GameNum { get; set; }
 
-        public short? GP { get; set; }
+        public short? Gp { get; set; }
 
         public virtual Master Master { get; set; }
 

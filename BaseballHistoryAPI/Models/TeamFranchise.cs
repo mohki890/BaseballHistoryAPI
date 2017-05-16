@@ -3,7 +3,7 @@ namespace BaseballHistoryAPI.Models
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    public partial class TeamFranchise
+    public class TeamFranchise
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TeamFranchise()
@@ -13,13 +13,13 @@ namespace BaseballHistoryAPI.Models
 
         [Key]
         [StringLength(3)]
-        public string franchID { get; set; }
+        public string FranchId { get; set; }
 
         [StringLength(50)]
-        public string franchName { get; set; }
+        public string FranchName { get; set; }
 
         [StringLength(2)]
-        public string active { get; set; }
+        public string Active { get; set; }
 
         [StringLength(3)]
         public string NAassoc { get; set; }

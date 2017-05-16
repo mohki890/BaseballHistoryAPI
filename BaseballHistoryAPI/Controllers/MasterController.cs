@@ -8,162 +8,162 @@ namespace BaseballHistoryAPI.Controllers
 {
     public class MasterController : ODataController
     {
-        BaseballStatsModel db = new BaseballStatsModel();
-        private bool MasterExists(string playerID)
+        BaseballStatsModel _db = new BaseballStatsModel();
+        private bool MasterExists(string playerId)
         {
-            return db.Master.Any(p => p.playerID == playerID);
+            return _db.Master.Any(p => p.PlayerId == playerId);
         }
 
         [EnableQuery(PageSize = 100)]
         public IQueryable<Master> Get()
         {
-            return db.Master;
+            return _db.Master;
         }
 
         [EnableQuery(PageSize = 100)]
         [ODataRoute("Master(playerID={playerID})")]
-        public SingleResult<Master> Get([FromODataUri] string playerID)
+        public SingleResult<Master> Get([FromODataUri] string playerId)
         {
-            IQueryable<Master> result = db.Master.Where(p => p.playerID == playerID);
+            IQueryable<Master> result = _db.Master.Where(p => p.PlayerId == playerId);
             return SingleResult.Create(result);
         }
 
         [EnableQuery(PageSize = 100)]
         [ODataRoute("Master({playerID})/Batting")]
-        public IQueryable<Batting> GetBatting([FromODataUri] string playerID)
+        public IQueryable<Batting> GetBatting([FromODataUri] string playerId)
         {
-            return db.Master.Where(p => p.playerID == playerID).SelectMany(p => p.Batting);
+            return _db.Master.Where(p => p.PlayerId == playerId).SelectMany(p => p.Batting);
         }
 
         [EnableQuery(PageSize = 100)]
         [ODataRoute("Master({playerID})/Pitching")]
-        public IQueryable<Pitching> GetPitching([FromODataUri] string playerID)
+        public IQueryable<Pitching> GetPitching([FromODataUri] string playerId)
         {
-            return db.Master.Where(p => p.playerID == playerID).SelectMany(p => p.Pitching);
+            return _db.Master.Where(p => p.PlayerId == playerId).SelectMany(p => p.Pitching);
         }
 
         [EnableQuery(PageSize = 100)]
         [ODataRoute("Master({playerID})/Fielding")]
-        public IQueryable<Fielding> GetFielding([FromODataUri] string playerID)
+        public IQueryable<Fielding> GetFielding([FromODataUri] string playerId)
         {
-            return db.Master.Where(p => p.playerID == playerID).SelectMany(p => p.Fielding);
+            return _db.Master.Where(p => p.PlayerId == playerId).SelectMany(p => p.Fielding);
         }
 
         [EnableQuery(PageSize = 100)]
         [ODataRoute("Master({playerID})/AllstarFull")]
-        public IQueryable<AllstarFull> GetAllstarFull([FromODataUri] string playerID)
+        public IQueryable<AllstarFull> GetAllstarFull([FromODataUri] string playerId)
         {
-            return db.Master.Where(p => p.playerID == playerID).SelectMany(p => p.AllstarFull);
+            return _db.Master.Where(p => p.PlayerId == playerId).SelectMany(p => p.AllstarFull);
         }
 
         [EnableQuery(PageSize = 100)]
         [ODataRoute("Master({playerID})/Appearances")]
-        public IQueryable<Appearance> GetAppearances([FromODataUri] string playerID)
+        public IQueryable<Appearance> GetAppearances([FromODataUri] string playerId)
         {
-            return db.Master.Where(p => p.playerID == playerID).SelectMany(p => p.Appearances);
+            return _db.Master.Where(p => p.PlayerId == playerId).SelectMany(p => p.Appearances);
         }
 
         [EnableQuery(PageSize = 100)]
         [ODataRoute("Master({playerID})/AwardsManagers")]
-        public IQueryable<AwardsManager> GetAwardsManagers([FromODataUri] string playerID)
+        public IQueryable<AwardsManager> GetAwardsManagers([FromODataUri] string playerId)
         {
-            return db.Master.Where(p => p.playerID == playerID).SelectMany(p => p.AwardsManagers);
+            return _db.Master.Where(p => p.PlayerId == playerId).SelectMany(p => p.AwardsManagers);
         }
 
         [EnableQuery(PageSize = 100)]
         [ODataRoute("Master({playerID})/AwardsPlayers")]
-        public IQueryable<AwardsPlayer> GetAwardsPlayers([FromODataUri] string playerID)
+        public IQueryable<AwardsPlayer> GetAwardsPlayers([FromODataUri] string playerId)
         {
-            return db.Master.Where(p => p.playerID == playerID).SelectMany(p => p.AwardsPlayers);
+            return _db.Master.Where(p => p.PlayerId == playerId).SelectMany(p => p.AwardsPlayers);
         }
 
         [EnableQuery(PageSize = 100)]
         [ODataRoute("Master({playerID})/AwardsShareManagers")]
-        public IQueryable<AwardsShareManager> GetAwardsShareManagers([FromODataUri] string playerID)
+        public IQueryable<AwardsShareManager> GetAwardsShareManagers([FromODataUri] string playerId)
         {
-            return db.Master.Where(p => p.playerID == playerID).SelectMany(p => p.AwardsShareManagers);
+            return _db.Master.Where(p => p.PlayerId == playerId).SelectMany(p => p.AwardsShareManagers);
         }
 
         [EnableQuery(PageSize = 100)]
         [ODataRoute("Master({playerID})/AwardsSharePlayers")]
-        public IQueryable<AwardsSharePlayer> GetAwardsSharePlayers([FromODataUri] string playerID)
+        public IQueryable<AwardsSharePlayer> GetAwardsSharePlayers([FromODataUri] string playerId)
         {
-            return db.Master.Where(p => p.playerID == playerID).SelectMany(p => p.AwardsSharePlayers);
+            return _db.Master.Where(p => p.PlayerId == playerId).SelectMany(p => p.AwardsSharePlayers);
         }
 
         [EnableQuery(PageSize = 100)]
         [ODataRoute("Master({playerID})/BattingPost")]
-        public IQueryable<BattingPost> GetBattingPost([FromODataUri] string playerID)
+        public IQueryable<BattingPost> GetBattingPost([FromODataUri] string playerId)
         {
-            return db.Master.Where(p => p.playerID == playerID).SelectMany(p => p.BattingPost);
+            return _db.Master.Where(p => p.PlayerId == playerId).SelectMany(p => p.BattingPost);
         }
 
         [EnableQuery(PageSize = 100)]
         [ODataRoute("Master({playerID})/CollegePlaying")]
-        public IQueryable<CollegePlaying> GetCollegePlaying([FromODataUri] string playerID)
+        public IQueryable<CollegePlaying> GetCollegePlaying([FromODataUri] string playerId)
         {
-            return db.Master.Where(p => p.playerID == playerID).SelectMany(p => p.CollegePlaying);
+            return _db.Master.Where(p => p.PlayerId == playerId).SelectMany(p => p.CollegePlaying);
         }
 
         [EnableQuery(PageSize = 100)]
         [ODataRoute("Master({playerID})/FieldingOF")]
-        public IQueryable<FieldingOF> GetFieldingOF([FromODataUri] string playerID)
+        public IQueryable<FieldingOf> GetFieldingOf([FromODataUri] string playerId)
         {
-            return db.Master.Where(p => p.playerID == playerID).SelectMany(p => p.FieldingOF);
+            return _db.Master.Where(p => p.PlayerId == playerId).SelectMany(p => p.FieldingOf);
         }
 
         [EnableQuery(PageSize = 100)]
         [ODataRoute("Master({playerID})/FieldingOFsplit")]
-        public IQueryable<FieldingOFsplit> GetFieldingOFsplit([FromODataUri] string playerID)
+        public IQueryable<FieldingOFsplit> GetFieldingOFsplit([FromODataUri] string playerId)
         {
-            return db.Master.Where(p => p.playerID == playerID).SelectMany(p => p.FieldingOFsplit);
+            return _db.Master.Where(p => p.PlayerId == playerId).SelectMany(p => p.FieldingOFsplit);
         }
 
         [EnableQuery(PageSize = 100)]
         [ODataRoute("Master({playerID})/FieldingPost")]
-        public IQueryable<FieldingPost> GetFieldingPost([FromODataUri] string playerID)
+        public IQueryable<FieldingPost> GetFieldingPost([FromODataUri] string playerId)
         {
-            return db.Master.Where(p => p.playerID == playerID).SelectMany(p => p.FieldingPost);
+            return _db.Master.Where(p => p.PlayerId == playerId).SelectMany(p => p.FieldingPost);
         }
 
         [EnableQuery(PageSize = 100)]
         [ODataRoute("Master({playerID})/HallOfFame")]
-        public IQueryable<HallOfFame> GetHallOfFame([FromODataUri] string playerID)
+        public IQueryable<HallOfFame> GetHallOfFame([FromODataUri] string playerId)
         {
-            return db.Master.Where(p => p.playerID == playerID).SelectMany(p => p.HallOfFame);
+            return _db.Master.Where(p => p.PlayerId == playerId).SelectMany(p => p.HallOfFame);
         }
 
         [EnableQuery(PageSize = 100)]
         [ODataRoute("Master({playerID})/Managers")]
-        public IQueryable<Manager> GetManagers([FromODataUri] string playerID)
+        public IQueryable<Manager> GetManagers([FromODataUri] string playerId)
         {
-            return db.Master.Where(p => p.playerID == playerID).SelectMany(p => p.Managers);
+            return _db.Master.Where(p => p.PlayerId == playerId).SelectMany(p => p.Managers);
         }
 
         [EnableQuery(PageSize = 100)]
         [ODataRoute("Master({playerID})/ManagersHalf")]
-        public IQueryable<ManagersHalf> GetManagersHalf([FromODataUri] string playerID)
+        public IQueryable<ManagersHalf> GetManagersHalf([FromODataUri] string playerId)
         {
-            return db.Master.Where(p => p.playerID == playerID).SelectMany(p => p.ManagersHalf);
+            return _db.Master.Where(p => p.PlayerId == playerId).SelectMany(p => p.ManagersHalf);
         }
 
         [EnableQuery(PageSize = 100)]
         [ODataRoute("Master({playerID})/PitchingPost")]
-        public IQueryable<PitchingPost> GetPitchingPost([FromODataUri] string playerID)
+        public IQueryable<PitchingPost> GetPitchingPost([FromODataUri] string playerId)
         {
-            return db.Master.Where(p => p.playerID == playerID).SelectMany(p => p.PitchingPost);
+            return _db.Master.Where(p => p.PlayerId == playerId).SelectMany(p => p.PitchingPost);
         }
 
         [EnableQuery(PageSize = 100)]
         [ODataRoute("Master({playerID})/Salaries")]
-        public IQueryable<Salary> GetSalaries([FromODataUri] string playerID)
+        public IQueryable<Salary> GetSalaries([FromODataUri] string playerId)
         {
-            return db.Master.Where(p => p.playerID == playerID).SelectMany(p => p.Salaries);
+            return _db.Master.Where(p => p.PlayerId == playerId).SelectMany(p => p.Salaries);
         }
 
         protected override void Dispose(bool disposing)
         {
-            db.Dispose();
+            _db.Dispose();
             base.Dispose(disposing);
         }
     }

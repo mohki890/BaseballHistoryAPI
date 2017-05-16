@@ -3,27 +3,27 @@ namespace BaseballHistoryAPI.Models
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    public partial class Park
+    public class Park
     {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int ID { get; set; }
+        public int Id { get; set; }
 
         [StringLength(255)]
-        public string parkalias { get; set; }
+        public string Parkalias { get; set; }
 
         [StringLength(6)]
-        public string parkkey { get; set; }
+        public string Parkkey { get; set; }
 
         [StringLength(255)]
-        public string parkname { get; set; }
+        public string Parkname { get; set; }
 
         [StringLength(255)]
-        public string city { get; set; }
+        public string City { get; set; }
 
         [StringLength(255)]
-        public string state { get; set; }
+        public string State { get; set; }
 
         [StringLength(255)]
-        public string country { get; set; }
+        public string Country { get; set; }
     }
 }

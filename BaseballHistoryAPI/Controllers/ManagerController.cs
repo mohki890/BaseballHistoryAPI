@@ -8,29 +8,29 @@ namespace BaseballHistoryAPI.Controllers
 {
     public class ManagerController : ODataController
     {
-        BaseballStatsModel db = new BaseballStatsModel();
-        private bool ManagersExists(string playerID, string teamID, string lgID, int yearID, int inseason)
+        BaseballStatsModel _db = new BaseballStatsModel();
+        private bool ManagersExists(string playerId, string teamId, string lgId, int yearId, int inseason)
         {
-            return db.Managers.Any(p => p.playerID == playerID && p.teamID == teamID && p.lgID == lgID && p.yearID == yearID && p.inseason == inseason);
+            return _db.Managers.Any(p => p.PlayerId == playerId && p.TeamId == teamId && p.LgId == lgId && p.YearId == yearId && p.Inseason == inseason);
         }
 
         [EnableQuery(PageSize = 100)]
         public IQueryable<Manager> Get()
         {
-            return db.Managers;
+            return _db.Managers;
         }
 
         [EnableQuery(PageSize = 100)]
         [ODataRoute("Managers(playerID={playerID},teamID={teamID},lgID={lgID},yearID={yearID},inseason={inseason})")]
-        public SingleResult<Manager> Get([FromODataUri] string playerID, [FromODataUri] string teamID, [FromODataUri] string lgID, [FromODataUri] int yearID, [FromODataUri] int inseason)
+        public SingleResult<Manager> Get([FromODataUri] string playerId, [FromODataUri] string teamId, [FromODataUri] string lgId, [FromODataUri] int yearId, [FromODataUri] int inseason)
         {
-            IQueryable<Manager> result = db.Managers.Where(p => p.playerID == playerID && p.teamID == teamID && p.lgID == lgID && p.yearID == yearID && p.inseason == inseason);
+            IQueryable<Manager> result = _db.Managers.Where(p => p.PlayerId == playerId && p.TeamId == teamId && p.LgId == lgId && p.YearId == yearId && p.Inseason == inseason);
             return SingleResult.Create(result);
         }
 
         protected override void Dispose(bool disposing)
         {
-            db.Dispose();
+            _db.Dispose();
             base.Dispose(disposing);
         }
     }

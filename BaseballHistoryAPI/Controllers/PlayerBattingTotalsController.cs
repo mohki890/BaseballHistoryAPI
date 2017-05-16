@@ -8,29 +8,29 @@ namespace BaseballHistoryAPI.Controllers
 {
     public class PlayerBattingTotalsController : ODataController
     {
-        BaseballStatsModel db = new BaseballStatsModel();
-        private bool PlayerBattingTotalsExists(string playerID)
+        BaseballStatsModel _db = new BaseballStatsModel();
+        private bool PlayerBattingTotalsExists(string playerId)
         {
-            return db.PlayerBattingTotals.Any(p => p.playerID == playerID);
+            return _db.PlayerBattingTotals.Any(p => p.PlayerId == playerId);
         }
 
         [EnableQuery(PageSize = 100)]
         public IQueryable<PlayerBattingTotal> Get()
         {
-            return db.PlayerBattingTotals;
+            return _db.PlayerBattingTotals;
         }
 
         [EnableQuery(PageSize = 100)]
         [ODataRoute("PlayerBattingTotals(playerID={playerID})")]
-        public SingleResult<PlayerBattingTotal> Get([FromODataUri] string playerID)
+        public SingleResult<PlayerBattingTotal> Get([FromODataUri] string playerId)
         {
-            IQueryable<PlayerBattingTotal> result = db.PlayerBattingTotals.Where(p => p.playerID == playerID);
+            IQueryable<PlayerBattingTotal> result = _db.PlayerBattingTotals.Where(p => p.PlayerId == playerId);
             return SingleResult.Create(result);
         }
 
         protected override void Dispose(bool disposing)
         {
-            db.Dispose();
+            _db.Dispose();
             base.Dispose(disposing);
         }
     }

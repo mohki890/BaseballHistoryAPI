@@ -8,134 +8,134 @@ namespace BaseballHistoryAPI.Controllers
 {
     public class TeamsController : ODataController
     {
-        BaseballStatsModel db = new BaseballStatsModel();
-        private bool TeamsExists(string teamID, string lgID, int yearID)
+        BaseballStatsModel _db = new BaseballStatsModel();
+        private bool TeamsExists(string teamId, string lgId, int yearId)
         {
-            return db.Teams.Any(p => p.teamID == teamID && p.lgID == lgID && p.yearID == yearID);
+            return _db.Teams.Any(p => p.TeamId == teamId && p.LgId == lgId && p.YearId == yearId);
         }
 
         [EnableQuery(PageSize = 100)]
         public IQueryable<Team> Get()
         {
-            return db.Teams;
+            return _db.Teams;
         }
 
         [EnableQuery(PageSize = 100)]
         [ODataRoute("Teams(teamID={teamID},lgID={lgID},yearID={yearID})")]
-        public SingleResult<Team> Get([FromODataUri] string teamID, [FromODataUri] string lgID, [FromODataUri] int yearID)
+        public SingleResult<Team> Get([FromODataUri] string teamId, [FromODataUri] string lgId, [FromODataUri] int yearId)
         {
-            IQueryable<Team> result = db.Teams.Where(p => p.teamID == teamID && p.lgID == lgID && p.yearID == yearID);
+            IQueryable<Team> result = _db.Teams.Where(p => p.TeamId == teamId && p.LgId == lgId && p.YearId == yearId);
             return SingleResult.Create(result);
         }
 
         [EnableQuery(PageSize = 100)]
         [ODataRoute("Teams(teamID={teamID},lgID={lgID},yearID={yearID})/Batting")]
-        public IQueryable<Batting> GetBatting([FromODataUri] string teamID, [FromODataUri] string lgID, [FromODataUri] int yearID)
+        public IQueryable<Batting> GetBatting([FromODataUri] string teamId, [FromODataUri] string lgId, [FromODataUri] int yearId)
         {
-            return db.Teams.Where(p => p.teamID == teamID && p.lgID == lgID && p.yearID == yearID).SelectMany(p => p.Batting);
+            return _db.Teams.Where(p => p.TeamId == teamId && p.LgId == lgId && p.YearId == yearId).SelectMany(p => p.Batting);
         }
 
         [EnableQuery(PageSize = 100)]
         [ODataRoute("Teams(teamID={teamID},lgID={lgID},yearID={yearID})/Pitching")]
-        public IQueryable<Pitching> GetPitching([FromODataUri] string teamID, [FromODataUri] string lgID, [FromODataUri] int yearID)
+        public IQueryable<Pitching> GetPitching([FromODataUri] string teamId, [FromODataUri] string lgId, [FromODataUri] int yearId)
         {
-            return db.Teams.Where(p => p.teamID == teamID && p.lgID == lgID && p.yearID == yearID).SelectMany(p => p.Pitching);
+            return _db.Teams.Where(p => p.TeamId == teamId && p.LgId == lgId && p.YearId == yearId).SelectMany(p => p.Pitching);
         }
 
         [EnableQuery(PageSize = 100)]
         [ODataRoute("Teams(teamID={teamID},lgID={lgID},yearID={yearID})/Fielding")]
-        public IQueryable<Fielding> GetFielding([FromODataUri] string teamID, [FromODataUri] string lgID, [FromODataUri] int yearID)
+        public IQueryable<Fielding> GetFielding([FromODataUri] string teamId, [FromODataUri] string lgId, [FromODataUri] int yearId)
         {
-            return db.Teams.Where(p => p.teamID == teamID && p.lgID == lgID && p.yearID == yearID).SelectMany(p => p.Fielding);
+            return _db.Teams.Where(p => p.TeamId == teamId && p.LgId == lgId && p.YearId == yearId).SelectMany(p => p.Fielding);
         }
 
         [EnableQuery(PageSize = 100)]
         [ODataRoute("Teams(teamID={teamID},lgID={lgID},yearID={yearID})/AllstarFull")]
-        public IQueryable<AllstarFull> GetAllstarFull([FromODataUri] string teamID, [FromODataUri] string lgID, [FromODataUri] int yearID)
+        public IQueryable<AllstarFull> GetAllstarFull([FromODataUri] string teamId, [FromODataUri] string lgId, [FromODataUri] int yearId)
         {
-            return db.Teams.Where(p => p.teamID == teamID && p.lgID == lgID && p.yearID == yearID).SelectMany(p => p.AllstarFull);
+            return _db.Teams.Where(p => p.TeamId == teamId && p.LgId == lgId && p.YearId == yearId).SelectMany(p => p.AllstarFull);
         }
 
         [EnableQuery(PageSize = 100)]
         [ODataRoute("Teams(teamID={teamID},lgID={lgID},yearID={yearID})/Appearances")]
-        public IQueryable<Appearance> GetAppearances([FromODataUri] string teamID, [FromODataUri] string lgID, [FromODataUri] int yearID)
+        public IQueryable<Appearance> GetAppearances([FromODataUri] string teamId, [FromODataUri] string lgId, [FromODataUri] int yearId)
         {
-            return db.Teams.Where(p => p.teamID == teamID && p.lgID == lgID && p.yearID == yearID).SelectMany(p => p.Appearances);
+            return _db.Teams.Where(p => p.TeamId == teamId && p.LgId == lgId && p.YearId == yearId).SelectMany(p => p.Appearances);
         }
 
         [EnableQuery(PageSize = 100)]
         [ODataRoute("Teams(teamID={teamID},lgID={lgID},yearID={yearID})/BattingPost")]
-        public IQueryable<BattingPost> GetBattingPost([FromODataUri] string teamID, [FromODataUri] string lgID, [FromODataUri] int yearID)
+        public IQueryable<BattingPost> GetBattingPost([FromODataUri] string teamId, [FromODataUri] string lgId, [FromODataUri] int yearId)
         {
-            return db.Teams.Where(p => p.teamID == teamID && p.lgID == lgID && p.yearID == yearID).SelectMany(p => p.BattingPost);
+            return _db.Teams.Where(p => p.TeamId == teamId && p.LgId == lgId && p.YearId == yearId).SelectMany(p => p.BattingPost);
         }
 
         [EnableQuery(PageSize = 100)]
         [ODataRoute("Teams(teamID={teamID},lgID={lgID},yearID={yearID})/FieldingOFsplit")]
-        public IQueryable<FieldingOFsplit> GetFieldingOFsplit([FromODataUri] string teamID, [FromODataUri] string lgID, [FromODataUri] int yearID)
+        public IQueryable<FieldingOFsplit> GetFieldingOFsplit([FromODataUri] string teamId, [FromODataUri] string lgId, [FromODataUri] int yearId)
         {
-            return db.Teams.Where(p => p.teamID == teamID && p.lgID == lgID && p.yearID == yearID).SelectMany(p => p.FieldingOFsplit);
+            return _db.Teams.Where(p => p.TeamId == teamId && p.LgId == lgId && p.YearId == yearId).SelectMany(p => p.FieldingOFsplit);
         }
 
         [EnableQuery(PageSize = 100)]
         [ODataRoute("Teams(teamID={teamID},lgID={lgID},yearID={yearID})/FieldingPost")]
-        public IQueryable<FieldingPost> GetFieldingPost([FromODataUri] string teamID, [FromODataUri] string lgID, [FromODataUri] int yearID)
+        public IQueryable<FieldingPost> GetFieldingPost([FromODataUri] string teamId, [FromODataUri] string lgId, [FromODataUri] int yearId)
         {
-            return db.Teams.Where(p => p.teamID == teamID && p.lgID == lgID && p.yearID == yearID).SelectMany(p => p.FieldingPost);
+            return _db.Teams.Where(p => p.TeamId == teamId && p.LgId == lgId && p.YearId == yearId).SelectMany(p => p.FieldingPost);
         }
 
         [EnableQuery(PageSize = 100)]
         [ODataRoute("Teams(teamID={teamID},lgID={lgID},yearID={yearID})/Managers")]
-        public IQueryable<Manager> GetManagers([FromODataUri] string teamID, [FromODataUri] string lgID, [FromODataUri] int yearID)
+        public IQueryable<Manager> GetManagers([FromODataUri] string teamId, [FromODataUri] string lgId, [FromODataUri] int yearId)
         {
-            return db.Teams.Where(p => p.teamID == teamID && p.lgID == lgID && p.yearID == yearID).SelectMany(p => p.Managers);
+            return _db.Teams.Where(p => p.TeamId == teamId && p.LgId == lgId && p.YearId == yearId).SelectMany(p => p.Managers);
         }
 
         [EnableQuery(PageSize = 100)]
         [ODataRoute("Teams(teamID={teamID},lgID={lgID},yearID={yearID})/ManagersHalf")]
-        public IQueryable<ManagersHalf> GetManagersHalf([FromODataUri] string teamID, [FromODataUri] string lgID, [FromODataUri] int yearID)
+        public IQueryable<ManagersHalf> GetManagersHalf([FromODataUri] string teamId, [FromODataUri] string lgId, [FromODataUri] int yearId)
         {
-            return db.Teams.Where(p => p.teamID == teamID && p.lgID == lgID && p.yearID == yearID).SelectMany(p => p.ManagersHalf);
+            return _db.Teams.Where(p => p.TeamId == teamId && p.LgId == lgId && p.YearId == yearId).SelectMany(p => p.ManagersHalf);
         }
 
         [EnableQuery(PageSize = 100)]
         [ODataRoute("Teams(teamID={teamID},lgID={lgID},yearID={yearID})/PitchingPost")]
-        public IQueryable<PitchingPost> GetPitchingPost([FromODataUri] string teamID, [FromODataUri] string lgID, [FromODataUri] int yearID)
+        public IQueryable<PitchingPost> GetPitchingPost([FromODataUri] string teamId, [FromODataUri] string lgId, [FromODataUri] int yearId)
         {
-            return db.Teams.Where(p => p.teamID == teamID && p.lgID == lgID && p.yearID == yearID).SelectMany(p => p.PitchingPost);
+            return _db.Teams.Where(p => p.TeamId == teamId && p.LgId == lgId && p.YearId == yearId).SelectMany(p => p.PitchingPost);
         }
 
         [EnableQuery(PageSize = 100)]
         [ODataRoute("Teams(teamID={teamID},lgID={lgID},yearID={yearID})/Salaries")]
-        public IQueryable<Salary> GetSalaries([FromODataUri] string teamID, [FromODataUri] string lgID, [FromODataUri] int yearID)
+        public IQueryable<Salary> GetSalaries([FromODataUri] string teamId, [FromODataUri] string lgId, [FromODataUri] int yearId)
         {
-            return db.Teams.Where(p => p.teamID == teamID && p.lgID == lgID && p.yearID == yearID).SelectMany(p => p.Salaries);
+            return _db.Teams.Where(p => p.TeamId == teamId && p.LgId == lgId && p.YearId == yearId).SelectMany(p => p.Salaries);
         }
 
         [EnableQuery(PageSize = 100)]
         [ODataRoute("Teams(teamID={teamID},lgID={lgID},yearID={yearID})/ManagersHalf")]
-        public IQueryable<HomeGame> GetHomeGames([FromODataUri] string teamID, [FromODataUri] string lgID, [FromODataUri] int yearID)
+        public IQueryable<HomeGame> GetHomeGames([FromODataUri] string teamId, [FromODataUri] string lgId, [FromODataUri] int yearId)
         {
-            return db.Teams.Where(p => p.teamID == teamID && p.lgID == lgID && p.yearID == yearID).SelectMany(p => p.HomeGames);
+            return _db.Teams.Where(p => p.TeamId == teamId && p.LgId == lgId && p.YearId == yearId).SelectMany(p => p.HomeGames);
         }
 
         [EnableQuery(PageSize = 100)]
         [ODataRoute("Teams(teamID={teamID},lgID={lgID},yearID={yearID})/PitchingPost")]
-        public IQueryable<SeriesPost> GetSeriesPost([FromODataUri] string teamID, [FromODataUri] string lgID, [FromODataUri] int yearID)
+        public IQueryable<SeriesPost> GetSeriesPost([FromODataUri] string teamId, [FromODataUri] string lgId, [FromODataUri] int yearId)
         {
-            return db.Teams.Where(p => p.teamID == teamID && p.lgID == lgID && p.yearID == yearID).SelectMany(p => p.SeriesPost);
+            return _db.Teams.Where(p => p.TeamId == teamId && p.LgId == lgId && p.YearId == yearId).SelectMany(p => p.SeriesPost);
         }
 
         [EnableQuery(PageSize = 100)]
         [ODataRoute("Teams(teamID={teamID},lgID={lgID},yearID={yearID})/TeamsHalf")]
-        public IQueryable<TeamsHalf> GetTeamsHalf([FromODataUri] string teamID, [FromODataUri] string lgID, [FromODataUri] int yearID)
+        public IQueryable<TeamsHalf> GetTeamsHalf([FromODataUri] string teamId, [FromODataUri] string lgId, [FromODataUri] int yearId)
         {
-            return db.Teams.Where(p => p.teamID == teamID && p.lgID == lgID && p.yearID == yearID).SelectMany(p => p.TeamsHalf);
+            return _db.Teams.Where(p => p.TeamId == teamId && p.LgId == lgId && p.YearId == yearId).SelectMany(p => p.TeamsHalf);
         }
 
         protected override void Dispose(bool disposing)
         {
-            db.Dispose();
+            _db.Dispose();
             base.Dispose(disposing);
         }
     }

@@ -8,29 +8,29 @@ namespace BaseballHistoryAPI.Controllers
 {
     public class CollegePlayingController : ODataController
     {
-        BaseballStatsModel db = new BaseballStatsModel();
-        private bool CollegePlayingExists(string playerID, int yearID, string schoolID)
+        BaseballStatsModel _db = new BaseballStatsModel();
+        private bool CollegePlayingExists(string playerId, int yearId, string schoolId)
         {
-            return db.CollegePlaying.Any(p => p.playerID == playerID && p.yearID == yearID && p.schoolID == schoolID);
+            return _db.CollegePlaying.Any(p => p.PlayerId == playerId && p.YearId == yearId && p.SchoolId == schoolId);
         }
 
         [EnableQuery(PageSize = 100)]
         public IQueryable<CollegePlaying> Get()
         {
-            return db.CollegePlaying;
+            return _db.CollegePlaying;
         }
 
         [EnableQuery(PageSize = 100)]
         [ODataRoute("CollegePlaying(playerID={playerID},yearID={yearID},schoolID={schoolID})")]
-        public SingleResult<CollegePlaying> Get([FromODataUri] string playerID, [FromODataUri] int yearID, [FromODataUri] string schoolID)
+        public SingleResult<CollegePlaying> Get([FromODataUri] string playerId, [FromODataUri] int yearId, [FromODataUri] string schoolId)
         {
-            IQueryable<CollegePlaying> result = db.CollegePlaying.Where(p => p.playerID == playerID && p.yearID == yearID && p.schoolID == schoolID);
+            IQueryable<CollegePlaying> result = _db.CollegePlaying.Where(p => p.PlayerId == playerId && p.YearId == yearId && p.SchoolId == schoolId);
             return SingleResult.Create(result);
         }
 
         protected override void Dispose(bool disposing)
         {
-            db.Dispose();
+            _db.Dispose();
             base.Dispose(disposing);
         }
     }

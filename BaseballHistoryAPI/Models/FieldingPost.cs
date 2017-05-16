@@ -4,59 +4,59 @@ namespace BaseballHistoryAPI.Models
     using System.ComponentModel.DataAnnotations.Schema;
 
     [Table("FieldingPost")]
-    public partial class FieldingPost
+    public class FieldingPost
     {
         [Key]
         [Column(Order = 0)]
         [StringLength(9)]
-        public string playerID { get; set; }
+        public string PlayerId { get; set; }
 
         [Key]
         [Column(Order = 1)]
         [StringLength(3)]
-        public string teamID { get; set; }
+        public string TeamId { get; set; }
 
         [Key]
         [Column(Order = 2)]
         [StringLength(2)]
-        public string lgID { get; set; }
+        public string LgId { get; set; }
 
         [Key]
         [Column(Order = 3)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public short yearID { get; set; }
+        public short YearId { get; set; }
 
         [Key]
         [Column(Order = 4)]
         [StringLength(10)]
-        public string round { get; set; }
+        public string Round { get; set; }
 
         [Key]
         [Column(Order = 5)]
         [StringLength(2)]
-        public string POS { get; set; }
+        public string Pos { get; set; }
 
         public short? G { get; set; }
 
-        public short? GS { get; set; }
+        public short? Gs { get; set; }
 
         public short? InnOuts { get; set; }
 
-        public short? PO { get; set; }
+        public short? Po { get; set; }
 
         public short? A { get; set; }
 
         public short? E { get; set; }
 
-        public short? DP { get; set; }
+        public short? Dp { get; set; }
 
-        public short? TP { get; set; }
+        public short? Tp { get; set; }
 
-        public short? PB { get; set; }
+        public short? Pb { get; set; }
 
-        public short? SB { get; set; }
+        public short? Sb { get; set; }
 
-        public short? CS { get; set; }
+        public short? Cs { get; set; }
 
         public virtual Master Master { get; set; }
 

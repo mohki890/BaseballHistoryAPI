@@ -3,17 +3,17 @@ namespace BaseballHistoryAPI.Models
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    public partial class PlayerBattingTotal
+    public class PlayerBattingTotal
     {
         [Key]
         [StringLength(9)]
-        public string playerID { get; set; }
+        public string PlayerId { get; set; }
 
         public int? G { get; set; }
 
-        public int? G_batting { get; set; }
+        public int? GBatting { get; set; }
 
-        public int? AB { get; set; }
+        public int? Ab { get; set; }
 
         public int? R { get; set; }
 
@@ -25,26 +25,26 @@ namespace BaseballHistoryAPI.Models
         [Column("3B")]
         public int? H3B { get; set; }
 
-        public int? HR { get; set; }
+        public int? Hr { get; set; }
 
-        public int? RBI { get; set; }
+        public int? Rbi { get; set; }
 
-        public int? SB { get; set; }
+        public int? Sb { get; set; }
 
-        public int? CS { get; set; }
+        public int? Cs { get; set; }
 
-        public int? BB { get; set; }
+        public int? Bb { get; set; }
 
-        public int? SO { get; set; }
+        public int? So { get; set; }
 
-        public int? IBB { get; set; }
+        public int? Ibb { get; set; }
 
-        public int? HPB { get; set; }
+        public int? Hpb { get; set; }
 
-        public int? SH { get; set; }
+        public int? Sh { get; set; }
 
-        public int? SF { get; set; }
+        public int? Sf { get; set; }
 
-        public int? GIDP { get; set; }
+        public int? Gidp { get; set; }
     }
 }

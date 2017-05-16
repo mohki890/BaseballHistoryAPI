@@ -8,29 +8,29 @@ namespace BaseballHistoryAPI.Controllers
 {
     public class AppearancesController : ODataController
     {
-        BaseballStatsModel db = new BaseballStatsModel();
-        private bool AppearancesExists(string playerID, string teamID, string lgID, int yearID)
+        BaseballStatsModel _db = new BaseballStatsModel();
+        private bool AppearancesExists(string playerId, string teamId, string lgId, int yearId)
         {
-            return db.Appearances.Any(p => p.playerID == playerID && p.teamID == teamID && p.lgID == lgID && p.yearID == yearID);
+            return _db.Appearances.Any(p => p.PlayerId == playerId && p.TeamId == teamId && p.LgId == lgId && p.YearId == yearId);
         }
 
         [EnableQuery(PageSize = 100)]
         public IQueryable<Appearance> Get()
         {
-            return db.Appearances;
+            return _db.Appearances;
         }
 
         [EnableQuery(PageSize = 100)]
         [ODataRoute("Appearances(playerID={playerID},teamID={teamID},lgID={lgID},yearID={yearID})")]
-        public SingleResult<Appearance> Get([FromODataUri] string playerID, [FromODataUri] string teamID, [FromODataUri] string lgID, [FromODataUri] int yearID)
+        public SingleResult<Appearance> Get([FromODataUri] string playerId, [FromODataUri] string teamId, [FromODataUri] string lgId, [FromODataUri] int yearId)
         {
-            IQueryable<Appearance> result = db.Appearances.Where(p => p.playerID == playerID && p.teamID == teamID && p.lgID == lgID && p.yearID == yearID);
+            IQueryable<Appearance> result = _db.Appearances.Where(p => p.PlayerId == playerId && p.TeamId == teamId && p.LgId == lgId && p.YearId == yearId);
             return SingleResult.Create(result);
         }
 
         protected override void Dispose(bool disposing)
         {
-            db.Dispose();
+            _db.Dispose();
             base.Dispose(disposing);
         }
     }

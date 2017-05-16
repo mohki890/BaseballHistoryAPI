@@ -4,7 +4,7 @@ namespace BaseballHistoryAPI.Models
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    public partial class Team
+    public class Team
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Team()
@@ -29,23 +29,23 @@ namespace BaseballHistoryAPI.Models
         [Key]
         [Column(Order = 0)]
         [StringLength(3)]
-        public string teamID { get; set; }
+        public string TeamId { get; set; }
 
         [Key]
         [Column(Order = 1)]
         [StringLength(2)]
-        public string lgID { get; set; }
+        public string LgId { get; set; }
 
         [Key]
         [Column(Order = 2)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public short yearID { get; set; }
+        public short YearId { get; set; }
 
         [StringLength(3)]
-        public string franchID { get; set; }
+        public string FranchId { get; set; }
 
         [StringLength(1)]
-        public string divID { get; set; }
+        public string DivId { get; set; }
 
         public short? Rank { get; set; }
 
@@ -61,17 +61,17 @@ namespace BaseballHistoryAPI.Models
         public string DivWin { get; set; }
 
         [StringLength(1)]
-        public string WCWin { get; set; }
+        public string WcWin { get; set; }
 
         [StringLength(1)]
         public string LgWin { get; set; }
 
         [StringLength(1)]
-        public string WSWin { get; set; }
+        public string WsWin { get; set; }
 
         public short? R { get; set; }
 
-        public short? AB { get; set; }
+        public short? Ab { get; set; }
 
         public short? H { get; set; }
 
@@ -81,68 +81,68 @@ namespace BaseballHistoryAPI.Models
         [Column("3B")]
         public short? H3B { get; set; }
 
-        public short? HR { get; set; }
+        public short? Hr { get; set; }
 
-        public short? BB { get; set; }
+        public short? Bb { get; set; }
 
-        public short? SO { get; set; }
+        public short? So { get; set; }
 
-        public short? SB { get; set; }
+        public short? Sb { get; set; }
 
-        public short? CS { get; set; }
+        public short? Cs { get; set; }
 
-        public short? HBP { get; set; }
+        public short? Hbp { get; set; }
 
-        public short? SF { get; set; }
+        public short? Sf { get; set; }
 
-        public short? RA { get; set; }
+        public short? Ra { get; set; }
 
-        public short? ER { get; set; }
+        public short? Er { get; set; }
 
-        public double? ERA { get; set; }
+        public double? Era { get; set; }
 
-        public short? CG { get; set; }
+        public short? Cg { get; set; }
 
-        public short? SHO { get; set; }
+        public short? Sho { get; set; }
 
-        public short? SV { get; set; }
+        public short? Sv { get; set; }
 
-        public int? IPouts { get; set; }
+        public int? Pouts { get; set; }
 
-        public short? HA { get; set; }
+        public short? Ha { get; set; }
 
-        public short? HRA { get; set; }
+        public short? Hra { get; set; }
 
-        public short? BBA { get; set; }
+        public short? Bba { get; set; }
 
-        public short? SOA { get; set; }
+        public short? Soa { get; set; }
 
         public int? E { get; set; }
 
-        public int? DP { get; set; }
+        public int? Dp { get; set; }
 
-        public double? FP { get; set; }
+        public double? Fp { get; set; }
 
         [StringLength(50)]
-        public string name { get; set; }
+        public string Name { get; set; }
 
         [StringLength(255)]
-        public string park { get; set; }
+        public string Park { get; set; }
 
-        public int? attendance { get; set; }
+        public int? Attendance { get; set; }
 
-        public int? BPF { get; set; }
+        public int? Bpf { get; set; }
 
-        public int? PPF { get; set; }
-
-        [StringLength(3)]
-        public string teamIDBR { get; set; }
+        public int? Ppf { get; set; }
 
         [StringLength(3)]
-        public string teamIDlahman45 { get; set; }
+        public string TeamIdbr { get; set; }
 
         [StringLength(3)]
-        public string teamIDretro { get; set; }
+        public string TeamIDlahman45 { get; set; }
+
+        [StringLength(3)]
+        public string TeamIDretro { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AllstarFull> AllstarFull { get; set; }

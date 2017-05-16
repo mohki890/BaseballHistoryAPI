@@ -8,29 +8,29 @@ namespace BaseballHistoryAPI.Controllers
 {
     public class FieldingOFsplitController : ODataController
     {
-        BaseballStatsModel db = new BaseballStatsModel();
-        private bool FieldingOFsplitExists(string playerID, string teamID, string lgID, int yearID, int stint, string POS)
+        BaseballStatsModel _db = new BaseballStatsModel();
+        private bool FieldingOFsplitExists(string playerId, string teamId, string lgId, int yearId, int stint, string pos)
         {
-            return db.FieldingOFsplit.Any(p => p.playerID == playerID && p.teamID == teamID && p.lgID == lgID && p.yearID == yearID && p.stint == stint && p.POS == POS);
+            return _db.FieldingOFsplit.Any(p => p.PlayerId == playerId && p.TeamId == teamId && p.LgId == lgId && p.YearId == yearId && p.Stint == stint && p.Pos == pos);
         }
 
         [EnableQuery(PageSize = 100)]
         public IQueryable<FieldingOFsplit> Get()
         {
-            return db.FieldingOFsplit;
+            return _db.FieldingOFsplit;
         }
 
         [EnableQuery(PageSize = 100)]
         [ODataRoute("FieldingOFsplit(playerID={playerID},teamID={teamID},lgID={lgID},yearID={yearID},stint={stint},POS={POS})")]
-        public SingleResult<FieldingOFsplit> Get([FromODataUri] string playerID, [FromODataUri] string teamID, [FromODataUri] string lgID, [FromODataUri] int yearID, [FromODataUri] int stint, [FromODataUri] string POS)
+        public SingleResult<FieldingOFsplit> Get([FromODataUri] string playerId, [FromODataUri] string teamId, [FromODataUri] string lgId, [FromODataUri] int yearId, [FromODataUri] int stint, [FromODataUri] string pos)
         {
-            IQueryable<FieldingOFsplit> result = db.FieldingOFsplit.Where(p => p.playerID == playerID && p.teamID == teamID && p.lgID == lgID && p.yearID == yearID && p.stint == stint && p.POS == POS);
+            IQueryable<FieldingOFsplit> result = _db.FieldingOFsplit.Where(p => p.PlayerId == playerId && p.TeamId == teamId && p.LgId == lgId && p.YearId == yearId && p.Stint == stint && p.Pos == pos);
             return SingleResult.Create(result);
         }
 
         protected override void Dispose(bool disposing)
         {
-            db.Dispose();
+            _db.Dispose();
             base.Dispose(disposing);
         }
     }

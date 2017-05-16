@@ -8,29 +8,29 @@ namespace BaseballHistoryAPI.Controllers
 {
     public class HomeGamesController : ODataController
     {
-        BaseballStatsModel db = new BaseballStatsModel();
-        private bool HomeGamesExists(string teamID, string lgID, int yearID, string parkkey)
+        BaseballStatsModel _db = new BaseballStatsModel();
+        private bool HomeGamesExists(string teamId, string lgId, int yearId, string parkkey)
         {
-            return db.HomeGames.Any(p => p.teamID == teamID && p.lgID == lgID && p.yearID == yearID && p.parkkey == parkkey);
+            return _db.HomeGames.Any(p => p.TeamId == teamId && p.LgId == lgId && p.YearId == yearId && p.Parkkey == parkkey);
         }
 
         [EnableQuery(PageSize = 100)]
         public IQueryable<HomeGame> Get()
         {
-            return db.HomeGames;
+            return _db.HomeGames;
         }
 
         [EnableQuery(PageSize = 100)]
         [ODataRoute("HomeGames(teamID={teamID},lgID={lgID},yearID={yearID},parkkey={parkkey})")]
-        public SingleResult<HomeGame> Get([FromODataUri] string teamID, [FromODataUri] string lgID, [FromODataUri] int yearID, [FromODataUri] string parkkey)
+        public SingleResult<HomeGame> Get([FromODataUri] string teamId, [FromODataUri] string lgId, [FromODataUri] int yearId, [FromODataUri] string parkkey)
         {
-            IQueryable<HomeGame> result = db.HomeGames.Where(p => p.teamID == teamID && p.lgID == lgID && p.yearID == yearID && p.parkkey == parkkey);
+            IQueryable<HomeGame> result = _db.HomeGames.Where(p => p.TeamId == teamId && p.LgId == lgId && p.YearId == yearId && p.Parkkey == parkkey);
             return SingleResult.Create(result);
         }
 
         protected override void Dispose(bool disposing)
         {
-            db.Dispose();
+            _db.Dispose();
             base.Dispose(disposing);
         }
     }

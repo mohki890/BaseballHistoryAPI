@@ -3,7 +3,7 @@ namespace BaseballHistoryAPI.Models
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    public partial class School
+    public class School
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public School()
@@ -13,19 +13,19 @@ namespace BaseballHistoryAPI.Models
 
         [Key]
         [StringLength(15)]
-        public string schoolID { get; set; }
+        public string SchoolId { get; set; }
 
         [StringLength(255)]
-        public string name_full { get; set; }
+        public string NameFull { get; set; }
 
         [StringLength(55)]
-        public string city { get; set; }
+        public string City { get; set; }
 
         [StringLength(55)]
-        public string state { get; set; }
+        public string State { get; set; }
 
         [StringLength(55)]
-        public string country { get; set; }
+        public string Country { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CollegePlaying> CollegePlaying { get; set; }

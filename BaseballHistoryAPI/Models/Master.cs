@@ -5,7 +5,7 @@ namespace BaseballHistoryAPI.Models
     using System.ComponentModel.DataAnnotations.Schema;
 
     [Table("Master")]
-    public partial class Master
+    public class Master
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Master()
@@ -20,7 +20,7 @@ namespace BaseballHistoryAPI.Models
             BattingPost = new HashSet<BattingPost>();
             CollegePlaying = new HashSet<CollegePlaying>();
             Fielding = new HashSet<Fielding>();
-            FieldingOF = new HashSet<FieldingOF>();
+            FieldingOf = new HashSet<FieldingOf>();
             FieldingOFsplit = new HashSet<FieldingOFsplit>();
             FieldingPost = new HashSet<FieldingPost>();
             HallOfFame = new HashSet<HallOfFame>();
@@ -33,68 +33,68 @@ namespace BaseballHistoryAPI.Models
 
         [Key]
         [StringLength(9)]
-        public string playerID { get; set; }
+        public string PlayerId { get; set; }
 
-        public short? birthYear { get; set; }
+        public short? BirthYear { get; set; }
 
-        public short? birthMonth { get; set; }
+        public short? BirthMonth { get; set; }
 
-        public short? birthDay { get; set; }
-
-        [StringLength(255)]
-        public string birthCountry { get; set; }
+        public short? BirthDay { get; set; }
 
         [StringLength(255)]
-        public string birthState { get; set; }
+        public string BirthCountry { get; set; }
 
         [StringLength(255)]
-        public string birthCity { get; set; }
-
-        public short? deathYear { get; set; }
-
-        public short? deathMonth { get; set; }
-
-        public short? deathDay { get; set; }
+        public string BirthState { get; set; }
 
         [StringLength(255)]
-        public string deathCountry { get; set; }
+        public string BirthCity { get; set; }
+
+        public short? DeathYear { get; set; }
+
+        public short? DeathMonth { get; set; }
+
+        public short? DeathDay { get; set; }
 
         [StringLength(255)]
-        public string deathState { get; set; }
+        public string DeathCountry { get; set; }
 
         [StringLength(255)]
-        public string deathCity { get; set; }
+        public string DeathState { get; set; }
 
         [StringLength(255)]
-        public string nameFirst { get; set; }
+        public string DeathCity { get; set; }
 
         [StringLength(255)]
-        public string nameLast { get; set; }
+        public string NameFirst { get; set; }
 
         [StringLength(255)]
-        public string nameGiven { get; set; }
-
-        public short? weight { get; set; }
-
-        public short? height { get; set; }
+        public string NameLast { get; set; }
 
         [StringLength(255)]
-        public string bats { get; set; }
+        public string NameGiven { get; set; }
+
+        public short? Weight { get; set; }
+
+        public short? Height { get; set; }
 
         [StringLength(255)]
-        public string throws { get; set; }
+        public string Bats { get; set; }
 
         [StringLength(255)]
-        public string debut { get; set; }
+        public string Throws { get; set; }
 
         [StringLength(255)]
-        public string finalGame { get; set; }
+        public string Debut { get; set; }
 
         [StringLength(255)]
-        public string retroID { get; set; }
+        public string FinalGame { get; set; }
 
         [StringLength(255)]
-        public string bbrefID { get; set; }
+        public string RetroId { get; set; }
+
+        [StringLength(255)]
+        public string BbrefId { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AllstarFull> AllstarFull { get; set; }
@@ -127,7 +127,7 @@ namespace BaseballHistoryAPI.Models
         public virtual ICollection<Fielding> Fielding { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<FieldingOF> FieldingOF { get; set; }
+        public virtual ICollection<FieldingOf> FieldingOf { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FieldingOFsplit> FieldingOFsplit { get; set; }

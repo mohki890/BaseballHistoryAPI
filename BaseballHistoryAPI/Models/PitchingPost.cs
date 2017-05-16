@@ -4,32 +4,32 @@ namespace BaseballHistoryAPI.Models
     using System.ComponentModel.DataAnnotations.Schema;
 
     [Table("PitchingPost")]
-    public partial class PitchingPost
+    public class PitchingPost
     {
         [Key]
         [Column(Order = 0)]
         [StringLength(9)]
-        public string playerID { get; set; }
+        public string PlayerId { get; set; }
 
         [Key]
         [Column(Order = 1)]
         [StringLength(3)]
-        public string teamID { get; set; }
+        public string TeamId { get; set; }
 
         [Key]
         [Column(Order = 2)]
         [StringLength(2)]
-        public string lgID { get; set; }
+        public string LgId { get; set; }
 
         [Key]
         [Column(Order = 3)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public short yearID { get; set; }
+        public short YearId { get; set; }
 
         [Key]
         [Column(Order = 4)]
         [StringLength(10)]
-        public string round { get; set; }
+        public string Round { get; set; }
 
         public short? W { get; set; }
 
@@ -37,49 +37,49 @@ namespace BaseballHistoryAPI.Models
 
         public short? G { get; set; }
 
-        public short? GS { get; set; }
+        public short? Gs { get; set; }
 
-        public short? CG { get; set; }
+        public short? Cg { get; set; }
 
-        public short? SHO { get; set; }
+        public short? Sho { get; set; }
 
-        public short? SV { get; set; }
+        public short? Sv { get; set; }
 
-        public int? IPouts { get; set; }
+        public int? Pouts { get; set; }
 
         public short? H { get; set; }
 
-        public short? ER { get; set; }
+        public short? Er { get; set; }
 
-        public short? HR { get; set; }
+        public short? Hr { get; set; }
 
-        public short? BB { get; set; }
+        public short? Bb { get; set; }
 
-        public short? SO { get; set; }
+        public short? So { get; set; }
 
-        public double? BAOpp { get; set; }
+        public double? BaOpp { get; set; }
 
-        public double? ERA { get; set; }
+        public double? Era { get; set; }
 
-        public short? IBB { get; set; }
+        public short? Ibb { get; set; }
 
-        public short? WP { get; set; }
+        public short? Wp { get; set; }
 
-        public short? HBP { get; set; }
+        public short? Hbp { get; set; }
 
-        public short? BK { get; set; }
+        public short? Bk { get; set; }
 
-        public short? BFP { get; set; }
+        public short? Bfp { get; set; }
 
-        public short? GF { get; set; }
+        public short? Gf { get; set; }
 
         public short? R { get; set; }
 
-        public short? SH { get; set; }
+        public short? Sh { get; set; }
 
-        public short? SF { get; set; }
+        public short? Sf { get; set; }
 
-        public short? GIDP { get; set; }
+        public short? Gidp { get; set; }
 
         public virtual Master Master { get; set; }
 

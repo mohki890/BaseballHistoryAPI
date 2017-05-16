@@ -8,29 +8,29 @@ namespace BaseballHistoryAPI.Controllers
 {
     public class FieldingPostController : ODataController
     {
-        BaseballStatsModel db = new BaseballStatsModel();
-        private bool FieldingPostExists(string playerID, string teamID, string lgID, int yearID, string round, string POS)
+        BaseballStatsModel _db = new BaseballStatsModel();
+        private bool FieldingPostExists(string playerId, string teamId, string lgId, int yearId, string round, string pos)
         {
-            return db.FieldingPost.Any(p => p.playerID == playerID && p.teamID == teamID && p.lgID == lgID && p.yearID == yearID && p.round == round && p.POS == POS);
+            return _db.FieldingPost.Any(p => p.PlayerId == playerId && p.TeamId == teamId && p.LgId == lgId && p.YearId == yearId && p.Round == round && p.Pos == pos);
         }
 
         [EnableQuery(PageSize = 100)]
         public IQueryable<FieldingPost> Get()
         {
-            return db.FieldingPost;
+            return _db.FieldingPost;
         }
 
         [EnableQuery(PageSize = 100)]
         [ODataRoute("FieldingPost(playerID={playerID},teamID={teamID},lgID={lgID},yearID={yearID},round={round},POS={POS})")]
-        public SingleResult<FieldingPost> Get([FromODataUri] string playerID, [FromODataUri] string teamID, [FromODataUri] string lgID, [FromODataUri] int yearID, [FromODataUri] string round, [FromODataUri] string POS)
+        public SingleResult<FieldingPost> Get([FromODataUri] string playerId, [FromODataUri] string teamId, [FromODataUri] string lgId, [FromODataUri] int yearId, [FromODataUri] string round, [FromODataUri] string pos)
         {
-            IQueryable<FieldingPost> result = db.FieldingPost.Where(p => p.playerID == playerID && p.teamID == teamID && p.lgID == lgID && p.yearID == yearID && p.round == round && p.POS == POS);
+            IQueryable<FieldingPost> result = _db.FieldingPost.Where(p => p.PlayerId == playerId && p.TeamId == teamId && p.LgId == lgId && p.YearId == yearId && p.Round == round && p.Pos == pos);
             return SingleResult.Create(result);
         }
 
         protected override void Dispose(bool disposing)
         {
-            db.Dispose();
+            _db.Dispose();
             base.Dispose(disposing);
         }
     }

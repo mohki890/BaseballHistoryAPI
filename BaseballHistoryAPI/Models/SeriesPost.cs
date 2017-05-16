@@ -4,39 +4,39 @@ namespace BaseballHistoryAPI.Models
     using System.ComponentModel.DataAnnotations.Schema;
 
     [Table("SeriesPost")]
-    public partial class SeriesPost
+    public class SeriesPost
     {
         [Key]
         [Column(Order = 0)]
         [StringLength(3)]
-        public string teamIDwinner { get; set; }
+        public string TeamIDwinner { get; set; }
 
         [Key]
         [Column(Order = 1)]
         [StringLength(2)]
-        public string lgIDwinner { get; set; }
+        public string LgIDwinner { get; set; }
 
         [Key]
         [Column(Order = 2)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public short yearID { get; set; }
+        public short YearId { get; set; }
 
         [Key]
         [Column(Order = 3)]
         [StringLength(5)]
-        public string round { get; set; }
+        public string Round { get; set; }
 
         [StringLength(3)]
-        public string teamIDloser { get; set; }
+        public string TeamIDloser { get; set; }
 
         [StringLength(2)]
-        public string lgIDloser { get; set; }
+        public string LgIDloser { get; set; }
 
-        public short? wins { get; set; }
+        public short? Wins { get; set; }
 
-        public short? losses { get; set; }
+        public short? Losses { get; set; }
 
-        public short? ties { get; set; }
+        public short? Ties { get; set; }
 
         public virtual Team Teams { get; set; }
 

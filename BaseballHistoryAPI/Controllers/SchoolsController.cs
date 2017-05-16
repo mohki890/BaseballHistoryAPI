@@ -8,36 +8,36 @@ namespace BaseballHistoryAPI.Controllers
 {
     public class SchoolsController : ODataController
     {
-        BaseballStatsModel db = new BaseballStatsModel();
-        private bool SchoolsExists(string schoolID)
+        BaseballStatsModel _db = new BaseballStatsModel();
+        private bool SchoolsExists(string schoolId)
         {
-            return db.Schools.Any(p => p.schoolID == schoolID);
+            return _db.Schools.Any(p => p.SchoolId == schoolId);
         }
 
         [EnableQuery(PageSize = 100)]
         public IQueryable<School> Get()
         {
-            return db.Schools;
+            return _db.Schools;
         }
 
         [EnableQuery(PageSize = 100)]
         [ODataRoute("Schools(schoolID={schoolID})")]
-        public SingleResult<School> Get([FromODataUri] string schoolID)
+        public SingleResult<School> Get([FromODataUri] string schoolId)
         {
-            IQueryable<School> result = db.Schools.Where(p => p.schoolID == schoolID);
+            IQueryable<School> result = _db.Schools.Where(p => p.SchoolId == schoolId);
             return SingleResult.Create(result);
         }
 
         [EnableQuery(PageSize = 100)]
         [ODataRoute("Schools(schoolID={schoolID})/CollegePlaying")]
-        public IQueryable<CollegePlaying> GetCollegePlaying([FromODataUri] string schoolID)
+        public IQueryable<CollegePlaying> GetCollegePlaying([FromODataUri] string schoolId)
         {
-            return db.Schools.Where(p => p.schoolID == schoolID).SelectMany(p => p.CollegePlaying);
+            return _db.Schools.Where(p => p.SchoolId == schoolId).SelectMany(p => p.CollegePlaying);
         }
 
         protected override void Dispose(bool disposing)
         {
-            db.Dispose();
+            _db.Dispose();
             base.Dispose(disposing);
         }
     }

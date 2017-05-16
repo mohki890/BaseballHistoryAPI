@@ -4,22 +4,22 @@ namespace BaseballHistoryAPI.Models
     using System.ComponentModel.DataAnnotations.Schema;
 
     [Table("TeamsHalf")]
-    public partial class TeamsHalf
+    public class TeamsHalf
     {
         [Key]
         [Column(Order = 0)]
         [StringLength(3)]
-        public string teamID { get; set; }
+        public string TeamId { get; set; }
 
         [Key]
         [Column(Order = 1)]
         [StringLength(2)]
-        public string lgID { get; set; }
+        public string LgId { get; set; }
 
         [Key]
         [Column(Order = 2)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public short yearID { get; set; }
+        public short YearId { get; set; }
 
         [Key]
         [Column(Order = 3)]
@@ -27,7 +27,7 @@ namespace BaseballHistoryAPI.Models
         public string Half { get; set; }
 
         [StringLength(1)]
-        public string divID { get; set; }
+        public string DivId { get; set; }
 
         [StringLength(1)]
         public string DivWin { get; set; }

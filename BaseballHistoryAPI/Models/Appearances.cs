@@ -3,61 +3,61 @@ namespace BaseballHistoryAPI.Models
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    public partial class Appearance
+    public class Appearance
     {
         [Key]
         [Column(Order = 0)]
         [StringLength(9)]
-        public string playerID { get; set; }
+        public string PlayerId { get; set; }
 
         [Key]
         [Column(Order = 1)]
         [StringLength(3)]
-        public string teamID { get; set; }
+        public string TeamId { get; set; }
 
         [Key]
         [Column(Order = 2)]
         [StringLength(2)]
-        public string lgID { get; set; }
+        public string LgId { get; set; }
 
         [Key]
         [Column(Order = 3)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public short yearID { get; set; }
+        public short YearId { get; set; }
 
-        public short? G_all { get; set; }
+        public short? GAll { get; set; }
 
-        public short? GS { get; set; }
+        public short? Gs { get; set; }
 
-        public short? G_batting { get; set; }
+        public short? GBatting { get; set; }
 
-        public short? G_defense { get; set; }
+        public short? GDefense { get; set; }
 
-        public short? G_p { get; set; }
+        public short? GP { get; set; }
 
-        public short? G_c { get; set; }
+        public short? GC { get; set; }
 
-        public short? G_1b { get; set; }
+        public short? G_1B { get; set; }
 
-        public short? G_2b { get; set; }
+        public short? G_2B { get; set; }
 
-        public short? G_3b { get; set; }
+        public short? G_3B { get; set; }
 
-        public short? G_ss { get; set; }
+        public short? GSs { get; set; }
 
-        public short? G_lf { get; set; }
+        public short? GLf { get; set; }
 
-        public short? G_cf { get; set; }
+        public short? GCf { get; set; }
 
-        public short? G_rf { get; set; }
+        public short? GRf { get; set; }
 
-        public short? G_of { get; set; }
+        public short? GOf { get; set; }
 
-        public short? G_dh { get; set; }
+        public short? GDh { get; set; }
 
-        public short? G_ph { get; set; }
+        public short? GPh { get; set; }
 
-        public short? G_pr { get; set; }
+        public short? GPr { get; set; }
 
         public virtual Master Master { get; set; }
 

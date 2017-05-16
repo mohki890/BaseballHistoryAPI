@@ -3,39 +3,39 @@ namespace BaseballHistoryAPI.Models
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    public partial class HomeGame
+    public class HomeGame
     {
         [Key]
         [Column(Order = 0)]
         [StringLength(3)]
-        public string teamID { get; set; }
+        public string TeamId { get; set; }
 
         [Key]
         [Column(Order = 1)]
         [StringLength(2)]
-        public string lgID { get; set; }
+        public string LgId { get; set; }
 
         [Key]
         [Column(Order = 2)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public short yearID { get; set; }
+        public short YearId { get; set; }
 
         [Key]
         [Column(Order = 3)]
         [StringLength(6)]
-        public string parkkey { get; set; }
+        public string Parkkey { get; set; }
 
         [StringLength(10)]
-        public string spanfirst { get; set; }
+        public string Spanfirst { get; set; }
 
         [StringLength(10)]
-        public string spanlast { get; set; }
+        public string Spanlast { get; set; }
 
-        public short? games { get; set; }
+        public short? Games { get; set; }
 
-        public short? openings { get; set; }
+        public short? Openings { get; set; }
 
-        public int? attendance { get; set; }
+        public int? Attendance { get; set; }
 
         public virtual Team Teams { get; set; }
     }
